@@ -1,5 +1,6 @@
 from data.enemies import Archer, SwordMan, Tank
 
+
 def archer_lvl1_init(id, pos):
     a = Archer(id, pos, 1.5, 1, 150, 16)
     return a
