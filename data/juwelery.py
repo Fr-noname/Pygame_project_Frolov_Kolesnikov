@@ -32,14 +32,14 @@ class PrisonOfEyes:  # Для Пожирателя душ
             self.kills = kills
             return [hp * k, shield * k, k_out * k]
 
-    def souleater(self, id):  # наносит сущность 1000 урона (500 щиту и 500 hp)
-        damage = 500
+    def souleater(self, id):  # наносит сущности 500 урона (250 щиту и 250 hp)
+        damage = 250
         return damage
 
 
 class RingOfPower:
     def berserk(self, hp, shield):
-        k_out = ((101 - hp) + (50 - shield)) / 2
+        k_out = ((101 - hp) + (50 - shield)) / 4
         return k_out
 
     def berserk(self):  # Увеличивает скорость атаки в 2 раза, урон - в 20
@@ -47,7 +47,7 @@ class RingOfPower:
 
 
 class GoldWatch:
-    def On_time(self, seconds):  # Если проходишь уровень меньше, чем за 3 минуты, то щит, hp, атака увеличиваются
+    def On_time(self, seconds):  # Если проходишь уровень меньше, чем за 3 мин 20 сек, то щит, hp, атака увеличиваются
         k = 2 - seconds / 100  # на k (например k = 1, hp было 100, стало 200, или k = -1, hp стало 50)
         return k
 
