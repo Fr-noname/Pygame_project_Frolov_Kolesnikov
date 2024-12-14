@@ -1,8 +1,5 @@
-from data.juwelery import SecretKubik, Krest, GoldWatch, PlaqueOfGeneral, RingOfPower, PrisonOfEyes
-
-
 class Player:
-    def __init__(self, hp, shield, k_in, k_out, v, weapon, juwelery=Krest):
+    def __init__(self, hp, shield, k_in, k_out, v, weapon, juwelery):
         self.hp = hp
         self.shield = shield
         self.k_in = k_in
