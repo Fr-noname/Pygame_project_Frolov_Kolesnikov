@@ -12,9 +12,13 @@ class Enemy:
         self.k_out = k_out  # k_out - то, сколько % урона получает игрок от моба
         self.radius = r
         self.damage = dam
+        self.min_s = 9999999999999999999999999999
+        self.archer_id = 0
+        self.s_to_player = 0
 
     def atack(self, player_pos):
-        if sqrt(int(player_pos[0]) ** 2 + int(player_pos[1]) ** 2) <= self.radius:
+        s_to_player = sqrt((int(player_pos[0]) - int(self.pos[0])) ** 2 + (int(player_pos[1]) - int(self.pos[1])) ** 2)
+        if s_to_player <= self.radius:
             self.damaging()
 
     def damaging(self):
@@ -29,6 +33,40 @@ class Enemy:
     def move_to_player(self, player_pos):
         pass
 
+    def movemnt(self, player_pos):
+        s_to_player = sqrt((int(player_pos[0]) - int(self.pos[0])) ** 2 + (int(player_pos[1]) - int(self.pos[1])) ** 2)
+        if self.hp == 100:
+            if s_to_player < self.radius // 3 + 1:
+                a = random.randrange(0, 5)
+                if a == 0:
+                    pass
+                else:
+                    pass
+            elif self.r >= s_to_player >= self.radius // 3 + 1:
+                a = random.randrange(0, 10)
+                if a == 0:
+                    self.atack()
+            else:
+                if s_to_player <= 5 * self.radius:
+                    self.move_to_player(player_pos)
+        else:
+            if s_to_player < self.radius // 2 + 1:
+                a = random.randrange(0, 1)
+                if a == 0:
+                    pass
+                else:
+                    pass
+            elif self.r >= s_to_player >= self.radius // 2 + 1:
+                a = random.randrange(0, 5)
+                if a == 0:
+                    self.damaging()
+            else:
+                if s_to_player <= self.radius * 5 + self.radius // 2:
+                    self.move_to_player(player_pos)
+
+    def get_id(self):
+        return self.id
+
 
 class Archer(Enemy):
     def damaging(self):
@@ -39,46 +77,26 @@ class Archer(Enemy):
         else:  # не попал
             pass
 
-    def movemnt(self, player_pos):
-        s_to_player = sqrt(int(player_pos[0]) ** 2 + int(player_pos[1]) ** 2)
-        if self.hp == 100:
-            if s_to_player < 50:
-                a = random.randrange(0, 5)
-                if a == 0:
-                    pass
-                else:
-                    pass
-            elif self.r >= s_to_player >= 50:
-                a = random.randrange(0, 10)
-                if a == 0:
-                    self.damaging()
-            else:
-                if s_to_player <= 500:
-                    self.move_to_player(player_pos)
-        else:
-            if s_to_player < 25:
-                a = random.randrange(0, 1)
-                if a == 0:
-                    pass
-                else:
-                    pass
-            elif self.r >= s_to_player >= 25:
-                a = random.randrange(0, 5)
-                if a == 0:
-                    self.damaging()
-            else:
-                if s_to_player <= 550:
-                    self.move_to_player(player_pos)
-
 
 class Tank(Enemy):
     def damaging(self):
         a = random.randrange(10, self.damage)
         return a * self.k_out
 
+    def koords_of_archer(self, *spisok_of_koords_and_id, player_pos):
+        self.s_to_player = sqrt((int(player_pos[0]) - int(self.pos[0])) ** 2 + (int(player_pos[1]) - int(self.pos[1])) ** 2)
+        for r in spisok_of_koords_and_id:
+            s_to_archer = sqrt((int(r[0]) - int(self.pos[0])) ** 2 +
+                               (int(r[1]) - int(self.pos[1])) ** 2)
+            if s_to_archer < self.min_s:
+                self.min_s = s_to_archer
+                self.archer_id = r[2]
+
+    def movement(self, player_pos):
+        pass
+
 
 class SwordMan(Enemy):
     def damaging(self):
         a = random.randrange(10, self.damage)
         return a
-
