@@ -26,6 +26,9 @@ class Enemy:
         else:
             self.shield -= damage * self.k_in
 
+    def move_to_player(self, player_pos):
+        pass
+
 
 class Archer(Enemy):
     def damaging(self):
@@ -35,6 +38,22 @@ class Archer(Enemy):
             pass
         else:  # не попал
             pass
+
+    def movemnt(self, player_pos):
+        s_to_player = sqrt(int(player_pos[0]) ** 2 + int(player_pos[1]) ** 2)
+        if s_to_player < 50:
+            a = random.randrange(0, 5)
+            if a == 0:
+                pass
+            else:
+                pass
+        elif self.r >= s_to_player >= 50:
+            a = random.randrange(0, 10)
+            if a == 0:
+                self.damaging()
+        else:
+            if s_to_player <= 400:
+                self.move_to_player(player_pos)
 
 
 class Tank(Enemy):
