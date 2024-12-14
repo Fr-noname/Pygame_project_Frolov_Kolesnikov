@@ -8,7 +8,7 @@ class SecretKubik:  # Для перса Егора
     def multiple_hp(self):  # пассивная способность
         return random.randrange(1, 21)
 
-    def brosok(self):  # актвная способность, бросает кубик (итоговый урон - size * damage)
+    def brosok(self):  # актвная способность, бросает кубик (итоговый урон - size * damage * k_out)
         size = random.randrange(1, 21)
         damage = random.randrange(1, 21)
         return size * damage
