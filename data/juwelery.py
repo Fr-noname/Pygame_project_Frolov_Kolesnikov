@@ -45,13 +45,15 @@ class RingOfPower:
     def berserk(self):  # Увеличивает скорость атаки в 2 раза, урон - в 20
         return 2, 20
 
+
 class GoldWatch:
     def On_time(self, seconds):  # Если проходишь уровень меньше, чем за 3 минуты, то щит, hp, атака увеличиваются
         k = 2 - seconds / 100  # на k (например k = 1, hp было 100, стало 200, или k = -1, hp стало 50)
         return k
 
-    def rabbit_hole: # телепортирует на 200 пикселей по напралению взгляда
+    def rabbit_hole(self):  # телепортирует на 200 пикселей по напралению взгляда
         pass
+
 
 class PlaqueOfGeneral:
     def __init__(self):
