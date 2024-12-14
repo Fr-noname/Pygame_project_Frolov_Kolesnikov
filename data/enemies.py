@@ -14,6 +14,7 @@ class Enemy:
         self.damage = dam
         self.min_s = 9999999999999999999999999999
         self.archer_id = 0
+        self.s_to_player = 0
 
     def atack(self, player_pos):
         s_to_player = sqrt((int(player_pos[0]) - int(self.pos[0])) ** 2 + (int(player_pos[1]) - int(self.pos[1])) ** 2)
@@ -83,7 +84,7 @@ class Tank(Enemy):
         return a * self.k_out
 
     def koords_of_archer(self, *spisok_of_koords_and_id, player_pos):
-        s_to_player = sqrt((int(player_pos[0]) - int(self.pos[0])) ** 2 + (int(player_pos[1]) - int(self.pos[1])) ** 2)
+        self.s_to_player = sqrt((int(player_pos[0]) - int(self.pos[0])) ** 2 + (int(player_pos[1]) - int(self.pos[1])) ** 2)
         for r in spisok_of_koords_and_id:
             s_to_archer = sqrt((int(r[0]) - int(self.pos[0])) ** 2 +
                                (int(r[1]) - int(self.pos[1])) ** 2)
