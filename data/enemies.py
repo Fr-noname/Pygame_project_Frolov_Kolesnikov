@@ -41,19 +41,34 @@ class Archer(Enemy):
 
     def movemnt(self, player_pos):
         s_to_player = sqrt(int(player_pos[0]) ** 2 + int(player_pos[1]) ** 2)
-        if s_to_player < 50:
-            a = random.randrange(0, 5)
-            if a == 0:
-                pass
+        if self.hp == 100:
+            if s_to_player < 50:
+                a = random.randrange(0, 5)
+                if a == 0:
+                    pass
+                else:
+                    pass
+            elif self.r >= s_to_player >= 50:
+                a = random.randrange(0, 10)
+                if a == 0:
+                    self.damaging()
             else:
-                pass
-        elif self.r >= s_to_player >= 50:
-            a = random.randrange(0, 10)
-            if a == 0:
-                self.damaging()
+                if s_to_player <= 500:
+                    self.move_to_player(player_pos)
         else:
-            if s_to_player <= 400:
-                self.move_to_player(player_pos)
+            if s_to_player < 25:
+                a = random.randrange(0, 1)
+                if a == 0:
+                    pass
+                else:
+                    pass
+            elif self.r >= s_to_player >= 25:
+                a = random.randrange(0, 5)
+                if a == 0:
+                    self.damaging()
+            else:
+                if s_to_player <= 550:
+                    self.move_to_player(player_pos)
 
 
 class Tank(Enemy):
