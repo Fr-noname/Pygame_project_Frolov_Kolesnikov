@@ -2,13 +2,14 @@ from math import sqrt
 from time import sleep
 
 
-class Swords:
-    def __init__(self, damage, attack_speed, r, s):  # r - дальность атаки, s - толщина
+class Weapon:
+    def __init__(self, damage, attack_speed, r, s, name):  # r - дальность атаки, s - толщина
         self.damaga = damage
         self.attack_speed = attack_speed
         self.r = r
         self.s = s
         self.min_s = 9999999999999999999999999999
+        self.name = name
 
     def atack(self, spisok_mob_id, player_pos):
         self.min_s = 9999999999999999999999999999
@@ -29,3 +30,18 @@ class Swords:
 
     def kd(self):
         sleep(1 / self.attack_speed)
+
+
+class Kokorowatary(Weapon):
+    pass
+
+
+class UnlimitedRuleBook(Weapon):
+    pass
+
+
+
+class HolyChain(Weapon):
+    pass
+
+
