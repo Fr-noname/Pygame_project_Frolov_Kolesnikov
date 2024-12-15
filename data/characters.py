@@ -23,6 +23,9 @@ class Player:
     def dealing_damage(self):
         pass
 
+    def death(self):
+        pass
+
 
 class Egor(Player):
     pass

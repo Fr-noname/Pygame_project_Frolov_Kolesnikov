@@ -33,6 +33,12 @@ class Enemy:
     def move_to_player(self, player_pos):
         pass
 
+    def get_inf(self):
+        return self.hp, self.shield
+
+    def death(self):
+        pass
+
     def movemnt(self, player_pos):
         s_to_player = sqrt((int(player_pos[0]) - int(self.pos[0])) ** 2 + (int(player_pos[1]) - int(self.pos[1])) ** 2)
         if self.hp == 100:
