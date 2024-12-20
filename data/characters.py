@@ -1,3 +1,5 @@
+import pygame
+
 class Player:
     def __init__(self, hp, shield, k_in, k_out, v, weapon, juwelery):
         self.hp = hp
@@ -8,8 +10,16 @@ class Player:
         self.v = v
         self.weapon = weapon
 
-    def movement(self):
-        pass
+    def movement(self, player_pos):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_UP]:
+            player_pos.y -= 10
+        if keys[pygame.K_DOWN]:
+            player_pos.y += 10
+        if keys[pygame.K_LEFT]:
+            player_pos.x -= 10
+        if keys[pygame.K_RIGHT]:
+            player_pos.x += 10
 
     def taking_damage(self, damage):
         if self.shield <= 0:
