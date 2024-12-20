@@ -4,7 +4,6 @@ import sys
 import pygame
 
 
-
 def lobby():
     pygame.init()
     screen = pygame.display.set_mode((300, 300))
@@ -36,6 +35,7 @@ def lobby():
         pygame.display.flip()
         dt = clock.tick(60) / 1000
     pygame.quit()
+
 
 def load_image(name, colorkey=None):
     fullname = os.path.join('images', name)

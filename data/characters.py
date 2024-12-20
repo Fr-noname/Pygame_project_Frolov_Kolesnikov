@@ -1,5 +1,6 @@
 import pygame
 
+
 class Player:
     def __init__(self, hp, shield, k_in, k_out, v, weapon, juwelery):
         self.hp = hp
