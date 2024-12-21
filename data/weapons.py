@@ -49,16 +49,49 @@ class Bow(Weapon):
         pass
 
 
-class Kokorowatary(Weapon):
+class Kokorowatary(Weapon):  # Перс Никиты
     pass
 
 
-class UnlimitedRuleBook(Weapon):
+class UnlimitedRuleBook(Weapon):  # Перс Никиты
     pass
 
 
-class HolyChain(Weapon):
+class HolyChain(Weapon):  # Паладин
     pass
 
-class Crucifix(Weapon):
+
+class Crucifix(Weapon):  # Паладин
+    pass
+
+
+class Vakidzasi(Weapon):  # Скорпиус
+    pass
+
+
+class ThrowingKnife(Weapon):  # Скорпиус
+    pass
+
+
+class Axe(Weapon):
+    pass
+
+
+class ThrowingAxe(Weapon):
+    pass
+
+
+class Book(Weapon):
+    pass
+
+
+class KubikD4(Weapon):
+    pass
+
+
+class MysteriousGloves(Weapon):
+    pass
+
+
+class DeathScythle(Weapon):
     pass
