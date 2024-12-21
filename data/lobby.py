@@ -6,34 +6,20 @@ import pygame
 
 def lobby():
     pygame.init()
-    screen = pygame.display.set_mode((300, 300))
+    size = w, h = (2560, 1440)
+    screen = pygame.display.set_mode(size)
     clock = pygame.time.Clock()
-    im = load_image('creature.png', -1)
     running = True
 
     dt = 0
 
-    player_pos = pygame.Vector2(1, 1)
+    player_pos = pygame.Vector2(w // 2 + 1, h // 2 + 1)
 
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-        screen.fill("white")
-
-        screen.blit(im, player_pos)
-
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_UP]:
-            player_pos.y -= 10
-        if keys[pygame.K_DOWN]:
-            player_pos.y += 10
-        if keys[pygame.K_LEFT]:
-            player_pos.x -= 10
-        if keys[pygame.K_RIGHT]:
-            player_pos.x += 10
-        pygame.display.flip()
-        dt = clock.tick(60) / 1000
+        screen.fill("Black")
     pygame.quit()
 
 
