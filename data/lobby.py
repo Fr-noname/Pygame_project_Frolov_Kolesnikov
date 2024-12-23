@@ -6,7 +6,7 @@ import pygame
 
 def lobby():
     pygame.init()
-    size = w, h = (2560, 1440)
+    size = w, h = (1920, 1080)
     screen = pygame.display.set_mode(size)
     clock = pygame.time.Clock()
     running = True
