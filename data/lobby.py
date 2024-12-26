@@ -1,7 +1,9 @@
 
 from data import functions
+import threading
 import pygame
 from data import game
+
 
 
 def lobby():
@@ -19,7 +21,7 @@ def lobby():
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = event.pos
-                if 50 <= int(pos[0]) <= 725:
+                if 50 <= int(pos[0]) <= 1025:
                     if 400 <= int(pos[1]) <= 475:
                         game.start(setings=[0])
                     elif 525 <= int(pos[1]) <= 600:
