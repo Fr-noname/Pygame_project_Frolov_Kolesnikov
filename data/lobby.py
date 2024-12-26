@@ -5,7 +5,6 @@ import pygame
 from data import game
 
 
-
 def lobby():
     pygame.init()
     image = functions.load_image('lobby.png')
