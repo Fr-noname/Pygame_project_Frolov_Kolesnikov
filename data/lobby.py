@@ -1,39 +1,36 @@
-import os
-import sys
 
+from data import functions
+import threading
 import pygame
+from data import game
 
 
 def lobby():
     pygame.init()
-    size = w, h = (2560, 1440)
+    image = functions.load_image('lobby.png')
+    size = w, h = (1920, 1080)
     screen = pygame.display.set_mode(size)
     clock = pygame.time.Clock()
     running = True
-
-    dt = 0
-
-    player_pos = pygame.Vector2(w // 2 + 1, h // 2 + 1)
+    screen.blit(image, (1, 1))
 
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-        screen.fill("Black")
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pos = event.pos
+                if 50 <= int(pos[0]) <= 1025:
+                    if 400 <= int(pos[1]) <= 475:
+                        game.start(setings=[0])
+                    elif 525 <= int(pos[1]) <= 600:
+                        game.setings()
+                    elif 650 <= int(pos[1]) <= 725:
+                        running = False
+        screen.blit(image, (1, 1))
+        pygame.display.flip()
+
+
     pygame.quit()
 
 
-def load_image(name, colorkey=None):
-    fullname = os.path.join('images', name)
-    if not os.path.isfile(fullname):
-        print(f'Файл с изображением {fullname} не найден')
-        sys.exit()
-    image = pygame.image.load(fullname)
-    if colorkey is not None:
-        image = image.convert()  # создаёт новую копию изображения с таким же форматом пикселей, как у экрана
-        if colorkey == -1:
-            colorkey = image.get_at((0, 0))
-        image.set_colorkey(colorkey)
-    else:
-        image = image.convert_alpha()  # метод для преобразования изображения с сохранением информации о прозрачности
-    return image
