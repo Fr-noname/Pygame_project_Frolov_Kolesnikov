@@ -4,7 +4,7 @@ from data import lobby
 
 
 def start(setings=[0]):
-    print(0)
+    pass
 
 
 def setings():

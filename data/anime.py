@@ -3,6 +3,7 @@ import time
 from data import functions
 import pygame
 
+
 def lobby_anime(screen):
     screen = screen[0]
     im_1 = functions.load_image('lobby.png')

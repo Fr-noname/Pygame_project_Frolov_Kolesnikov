@@ -73,25 +73,25 @@ class ThrowingKnife(Weapon):  # Скорпиус
     pass
 
 
-class Axe(Weapon):
+class Axe(Weapon):  # Берсерк
     pass
 
 
-class ThrowingAxe(Weapon):
+class ThrowingAxe(Weapon):  # Берсерк
     pass
 
 
-class Book(Weapon):
+class Book(Weapon):  # Егор
     pass
 
 
-class KubikD4(Weapon):
+class KubikD4(Weapon):  # Егор
     pass
 
 
-class MysteriousGloves(Weapon):
+class MysteriousGloves(Weapon):  # SoulEater
     pass
 
 
-class DeathScythle(Weapon):
+class DeathScythle(Weapon):  # SoulEater
     pass
