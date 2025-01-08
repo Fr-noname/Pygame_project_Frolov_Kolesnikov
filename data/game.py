@@ -33,7 +33,7 @@ def start(setings=[1]):
         for e in pygame.event.get():
             if e.type == QUIT:
                 running = False
-        screen.blit(background, (0, 0))
+        screen.blit(background, (1, 1))
         pygame.display.update()
 
 
