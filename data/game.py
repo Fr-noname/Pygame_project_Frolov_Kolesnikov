@@ -5,7 +5,16 @@ from data import lobby
 
 
 def start(setings=[1]):
-    pass
+    pygame.init()
+    size = w, h = (1920, 1080)
+    screen = pygame.display.set_mode(size)
+    clock = pygame.time.Clock()
+    running = True
+    screen.fill((0, 0, 0))
+    while running:
+        screen.fill((0, 0, 0))
+        pygame.display.flip()
+        clock.tick(60)
 
 
 def setings():
