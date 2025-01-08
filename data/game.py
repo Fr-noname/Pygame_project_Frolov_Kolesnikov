@@ -14,22 +14,25 @@ def start(setings=[1], DISPLAY=None):
     background = Surface((1920, 1080))
     background.fill((0, 0, 255))
     running = True
+    for e in pygame.event.get():
+        if e.type == QUIT:
+            running = False
+    x = y = 0
+    for row in Room1:
+        for col in row:
+            if col == "-":
+                pf = Surface((20, 20))
+                pf.fill((255, 255, 0))
+                screen.blit(pf, (x, y))
+
+            x += 20
+        y += 20
+        x = 0
 
     while running:
         for e in pygame.event.get():
             if e.type == QUIT:
                 running = False
-        x = y = 0
-        for row in Room1:
-            for col in row:
-                if col == "-":
-                    pf = Surface((20, 20))
-                    pf.fill((255, 255, 0))
-                    screen.blit(pf, (x, y))
-
-                x += 20
-            y += 20
-            x = 0
         screen.blit(background, (0, 0))
         pygame.display.update()
 
