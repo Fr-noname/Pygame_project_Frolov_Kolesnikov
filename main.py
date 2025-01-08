@@ -1,4 +1,3 @@
-import pygame
 from data import lobby
 
 if __name__ == "__main__":
@@ -6,4 +5,3 @@ if __name__ == "__main__":
         lobby.lobby()
     except Exception as err:
         print(f"Ошибся, но в {err}?")
-

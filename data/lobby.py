@@ -1,8 +1,8 @@
+import pygame
 
 from data import functions
-import threading
-import pygame
 from data import game
+from data.functions import DifficultyNomer
 
 
 def lobby():
@@ -22,7 +22,7 @@ def lobby():
                 pos = event.pos
                 if 50 <= int(pos[0]) <= 1025:
                     if 400 <= int(pos[1]) <= 475:
-                        game.start(setings=[0])
+                        game.start(setings=[DifficultyNomer])
                     elif 525 <= int(pos[1]) <= 600:
                         game.setings()
                     elif 650 <= int(pos[1]) <= 725:
@@ -30,7 +30,4 @@ def lobby():
         screen.blit(image, (1, 1))
         pygame.display.flip()
 
-
     pygame.quit()
-
-

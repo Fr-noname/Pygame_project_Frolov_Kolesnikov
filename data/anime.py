@@ -1,7 +1,7 @@
 import random
 import time
+
 from data import functions
-import pygame
 
 
 def lobby_anime(screen):
