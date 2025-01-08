@@ -7,7 +7,7 @@ from data.functions import Pixel
 from levels.rooms import Room1
 
 
-def start(setings=[1], DISPLAY=None):
+def start(setings=[1]):
     pygame.init()  # Инициация PyGame
     screen = pygame.display.set_mode((1920, 1080))
     pygame.display.set_caption("Until it Done")
@@ -21,9 +21,9 @@ def start(setings=[1], DISPLAY=None):
     for row in Room1:
         for col in row:
             if col == "-":
-                pf = Surface((20, 20))
-                pf.fill((255, 255, 0))
-                screen.blit(pf, (x, y))
+                background = Surface((20, 20))
+                background.fill((255, 255, 0))
+                screen.blit(background, (x, y))
 
             x += 20
         y += 20
