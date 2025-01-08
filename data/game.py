@@ -1,20 +1,37 @@
 import pygame
+from pygame import QUIT, Color, Surface
 
 from data import functions
 from data import lobby
+from data.functions import Pixel
+from levels.rooms import Room1
 
 
-def start(setings=[1]):
-    pygame.init()
-    size = w, h = (1920, 1080)
-    screen = pygame.display.set_mode(size)
-    clock = pygame.time.Clock()
+def start(setings=[1], DISPLAY=None):
+    pygame.init()  # Инициация PyGame
+    screen = pygame.display.set_mode((1920, 1080))
+    pygame.display.set_caption("Until it Done")
+    background = Surface((1920, 1080))
+    background.fill((0, 0, 255))
     running = True
-    screen.fill((0, 0, 0))
+
     while running:
-        screen.fill((0, 0, 0))
-        pygame.display.flip()
-        clock.tick(60)
+        for e in pygame.event.get():
+            if e.type == QUIT:
+                running = False
+        x = y = 0
+        for row in Room1:
+            for col in row:
+                if col == "-":
+                    pf = Surface((20, 20))
+                    pf.fill((255, 255, 0))
+                    screen.blit(pf, (x, y))
+
+                x += 20
+            y += 20
+            x = 0
+        screen.blit(background, (0, 0))
+        pygame.display.update()
 
 
 def setings():

@@ -18,5 +18,6 @@ def load_image(name, colorkey=None):
     return image
 
 
-global DifficultyNomer
+global DifficultyNomer, Pixel
 DifficultyNomer = 1
+Pixel = (20)
