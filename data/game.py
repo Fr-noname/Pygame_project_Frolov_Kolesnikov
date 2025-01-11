@@ -12,6 +12,8 @@ def start(setings=1):
     player_pos = pygame.Vector2(1, 1)
     screen = pygame.display.set_mode((1920, 1080))
     pygame.display.set_caption("Until it Done")
+    clock = pygame.time.Clock()
+    fps = 120
 
     a = characters.Player(100, 100, 1, 1, 20, None, None, None)
     running = True
@@ -41,6 +43,7 @@ def start(setings=1):
             a.change_weapon()
         pygame.display.update()
         pygame.display.flip()
+        clock.tick(fps)
     pygame.quit()
 
 
