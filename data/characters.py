@@ -2,14 +2,16 @@ import pygame
 
 
 class Player:
-    def __init__(self, hp, shield, k_in, k_out, v, weapon, juwelery):
+    def __init__(self, hp, shield, k_in, k_out, v, weapon1, weapon2, juwelery):
         self.hp = hp
         self.shield = shield
         self.k_in = k_in
         self.k_out = k_out
         self.juwelery = juwelery
         self.v = v
-        self.weapon = weapon
+        self.weapon1 = weapon1
+        self.weapon2 = weapon2
+        self.w = 0
 
     def movement(self, player_pos):
         keys = pygame.key.get_pressed()
@@ -31,11 +33,17 @@ class Player:
     def get_information(self):
         return [self.hp, self.shield, self.k_in, self.k_out, self.juwelery, self.v]
 
-    def dealing_damage(self):
-        pass
+    def attack(self):
+        if self.w % 2 == 0:
+            pass
+        else:
+            pass
 
     def death(self):
         pass
+
+    def change_weapon(self):
+        self.w += 1
 
 
 class Egor(Player):
