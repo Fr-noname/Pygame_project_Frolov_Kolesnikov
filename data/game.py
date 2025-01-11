@@ -14,7 +14,7 @@ def start(setings=1):
     player_pos = pygame.Vector2(1, 1)
     screen = pygame.display.set_mode((1920, 1080))
     pygame.display.set_caption("Until it Done")
-    a = characters.Player(100, 100, 1, 1, 7, None, None, None)
+    a = characters.Player(100, 100, 1, 1, 10, None, None, None)
     background = Surface((1920, 1080))
     background.fill((0, 0, 255))
     running = True
@@ -56,6 +56,7 @@ def start(setings=1):
                 running = False
             if e.type == pygame.MOUSEBUTTONDOWN:
                 a.attack()
+
         screen.blit(background, (1, 1))
         keys = pygame.key.get_pressed()
 
