@@ -2,6 +2,7 @@ import os
 import sys
 
 import pygame
+from pygame import Surface
 
 
 def load_image(name, colorkey=None):
@@ -18,6 +19,27 @@ def load_image(name, colorkey=None):
     return image
 
 
-global DifficultyNomer, Pixel
+def room_show(room, screen, im, player_pos):
+    x = y = 0
+    for row in room:
+        for col in row:
+            if col == "-":
+                background = Surface((20, 20))
+                background.fill((255, 0, 255))
+                screen.blit(background, (x, y))
+            else:
+                background = Surface((20, 20))
+                background.fill((0, 0, 0))
+                screen.blit(background, (x, y))
+            x += 20
+            screen.blit(im, player_pos)
+        y += 20
+        x = 0
+        pygame.display.update()
+        pygame.display.flip()
+
+
+global DifficultyNomer
 DifficultyNomer = 1
-Pixel = (20)
+
+Pixel = (20, 20)

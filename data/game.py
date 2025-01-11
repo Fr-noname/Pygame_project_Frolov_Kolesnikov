@@ -1,55 +1,25 @@
-import pygame
-from pygame import QUIT, Color, Surface
+from pygame import QUIT
 
-from data import functions
-from data import lobby
-from data.functions import Pixel
-from levels.rooms import Room1
 from data import characters
+from data import lobby
+from data.functions import *
+from levels.rooms import *
 
 
 def start(setings=1):
     pygame.init()  # Инициация PyGame
-    im = functions.load_image('LIFESTEALER.png', -1)
+    im = load_image('LIFESTEALER.png', -1)
     player_pos = pygame.Vector2(1, 1)
     screen = pygame.display.set_mode((1920, 1080))
     pygame.display.set_caption("Until it Done")
-    a = characters.Player(100, 100, 1, 1, 10, None, None, None)
-    background = Surface((1920, 1080))
-    background.fill((0, 0, 255))
+
+    a = characters.Player(100, 100, 1, 1, 20, None, None, None)
     running = True
-    for e in pygame.event.get():
-        if e.type == QUIT:
-            running = False
-    x = y = 0
-    for row in Room1:
-        for col in row:
-            if col == "-":
-                background = Surface((20, 20))
-                background.fill((255, 0, 255))
-                screen.blit(background, (x, y))
-            x += 20
-        y += 20
-        x = 0
+
+    room_show(battle_room3_l_n, screen, im, player_pos)
 
     while running:
-        background = Surface((1920, 1080))
-        background.fill((0, 0, 255))
-        x = y = 0
-        for row in Room1:
-            for col in row:
-                screen.blit(im, player_pos)
-                if col == "-":
-                    background = Surface((20, 20))
-                    background.fill((255, 0, 255))
-                    screen.blit(background, (x, y))
-                else:
-                    background = Surface((20, 20))
-                    background.fill((0, 0, 0))
-                    screen.blit(background, (x, y))
-                x += 20
-            y += 20
-            x = 0
+        room_show(battle_room3_l_n, screen, im, player_pos)
 
         for e in pygame.event.get():
             if e.type == QUIT:
@@ -57,7 +27,6 @@ def start(setings=1):
             if e.type == pygame.MOUSEBUTTONDOWN:
                 a.attack()
 
-        screen.blit(background, (1, 1))
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_w]:
@@ -70,8 +39,6 @@ def start(setings=1):
             player_pos.x += a.get_information()[-1]
         if keys[pygame.K_TAB]:
             a.change_weapon()
-
-        screen.blit(background, (0, 0))
         pygame.display.update()
         pygame.display.flip()
     pygame.quit()
@@ -79,7 +46,7 @@ def start(setings=1):
 
 def setings():
     pygame.init()
-    image = functions.load_image('difficulty.png')
+    image = load_image('difficulty.png')
     size = w, h = (1920, 1080)
     screen = pygame.display.set_mode(size)
     clock = pygame.time.Clock()
@@ -94,13 +61,13 @@ def setings():
                 pos = event.pos
                 if 50 <= int(pos[0]) <= 1025:
                     if 400 <= int(pos[1]) <= 475:
-                        functions.DifficultyNomer = 1
+                        DifficultyNomer = 1
                         running = False
                     elif 525 <= int(pos[1]) <= 600:
-                        functions.DifficultyNomer = 2
+                        DifficultyNomer = 2
                         running = False
                     elif 650 <= int(pos[1]) <= 725:
-                        functions.DifficultyNomer = 3
+                        DifficultyNomer = 3
                         running = False
         screen.blit(image, (1, 1))
         pygame.display.flip()
