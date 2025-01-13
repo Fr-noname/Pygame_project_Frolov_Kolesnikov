@@ -11,6 +11,7 @@ def lobby():
     size = w, h = (1920, 1080)
     screen = pygame.display.set_mode(size)
     clock = pygame.time.Clock()
+    fps = 144
     running = True
     screen.blit(image, (1, 1))
 
@@ -29,5 +30,7 @@ def lobby():
                         running = False
         screen.blit(image, (1, 1))
         pygame.display.flip()
+        print(clock.get_fps())
+        clock.tick(fps)
 
     pygame.quit()

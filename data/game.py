@@ -18,16 +18,48 @@ def start(setings=1):
     a = characters.Player(100, 100, 1, 1, 20, None, None, None)
     running = True
 
-    room_show(battle_room3_l_n, screen, im, player_pos)
+    x = y = 0
+    for row in beg_room1:
+        for col in row:
+            if col == "-":
+                background = Surface((20, 20))
+                background.fill((255, 0, 255))
+                screen.blit(background, (x, y))
+            else:
+                background = Surface((20, 20))
+                background.fill((0, 0, 0))
+                screen.blit(background, (x, y))
+            x += 20
+            screen.blit(im, player_pos)
+        y += 20
+        x = 0
+        pygame.display.update()
+        pygame.display.flip()
 
     while running:
-        room_show(battle_room3_l_n, screen, im, player_pos)
+        x = y = 0
+        for row in beg_room1:
+            for col in row:
+                if col == "-":
+                    background = Surface((20, 20))
+                    background.fill((255, 0, 255))
+                    screen.blit(background, (x, y))
+                else:
+                    background = Surface((20, 20))
+                    background.fill((0, 0, 0))
+                    screen.blit(background, (x, y))
+                x += 20
+                screen.blit(im, player_pos)
+            y += 20
+            x = 0
+            pygame.display.update()
+            pygame.display.flip()
 
         for e in pygame.event.get():
             if e.type == QUIT:
                 running = False
-            if e.type == pygame.MOUSEBUTTONDOWN:
-                a.attack()
+            # if e.type == pygame.MOUSEBUTTONDOWN:
+                # a.attack()
 
         keys = pygame.key.get_pressed()
 
@@ -43,6 +75,7 @@ def start(setings=1):
             a.change_weapon()
         pygame.display.update()
         pygame.display.flip()
+        print(clock.get_fps())
         clock.tick(fps)
     pygame.quit()
 
