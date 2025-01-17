@@ -39,6 +39,30 @@ def room_show(room, screen, im, player_pos):
         pygame.display.flip()
 
 
+def generate_lvl(name, screen):
+    x = y = 0
+    s = []
+    for row in name:
+        for col in row:
+            if col == "-":
+                background = Surface((20, 20))
+                background.fill((255, 0, 255))
+                screen.blit(background, (x, y))
+                s.append([x, y])
+            else:
+                background = Surface((20, 20))
+                background.fill((0, 0, 0))
+                screen.blit(background, (x, y))
+            x += 20
+        y += 20
+        x = 0
+        pygame.display.update()
+        pygame.display.flip()
+    return s
+
+
+
+
 global DifficultyNomer
 DifficultyNomer = 1
 

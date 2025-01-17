@@ -1,8 +1,11 @@
 import pygame
+from data.classes import *
+from data.functions import *
 
 
-class Player:
-    def __init__(self, hp, shield, k_in, k_out, v, weapon1, weapon2, juwelery):
+class Player(pygame.sprite.Sprite):
+    def __init__(self, hp, shield, k_in, k_out, v, weapon1, weapon2, juwelery, player_pos):
+        super().__init__(ALL_SPRITES)
         self.hp = hp
         self.shield = shield
         self.k_in = k_in
@@ -12,17 +15,22 @@ class Player:
         self.weapon1 = weapon1
         self.weapon2 = weapon2
         self.w = 0
+        self.x = player_pos.x
+        self.y = player_pos.y
+        self.image = load_image('Port_swprdman.png')
+        self.rect = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
 
-    def movement(self, player_pos):
+    def movement(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_UP]:
-            player_pos.y -= 10
-        if keys[pygame.K_DOWN]:
-            player_pos.y += 10
-        if keys[pygame.K_LEFT]:
-            player_pos.x -= 10
-        if keys[pygame.K_RIGHT]:
-            player_pos.x += 10
+        if keys[pygame.K_w]:
+            self.y -= self.v
+        if keys[pygame.K_s]:
+            self.y += self.v
+        if keys[pygame.K_a]:
+            self.x -= self.v
+        if keys[pygame.K_d]:
+            self.x += self.v
+        self.rect = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
 
     def taking_damage(self, damage):
         if self.shield <= 0:
@@ -44,6 +52,9 @@ class Player:
 
     def change_weapon(self):
         self.w += 1
+
+    def return_pos(self):
+        return self.x, self.y
 
 
 class Egor(Player):

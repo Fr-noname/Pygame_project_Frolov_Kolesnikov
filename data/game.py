@@ -4,79 +4,48 @@ from data import characters
 from data import lobby
 from data.functions import *
 from levels.rooms import *
+from data.classes import *
 
 
 def start(setings=1):
     pygame.init()  # Инициация PyGame
-    im = load_image('LIFESTEALER.png', -1)
-    player_pos = pygame.Vector2(1, 1)
-    screen = pygame.display.set_mode((1920, 1080))
+    size = (1920, 1080)
+    player_pos = pygame.Vector2(size[0] // 2, size[1] // 2)
+    screen = pygame.display.set_mode(size)
     pygame.display.set_caption("Until it Done")
     clock = pygame.time.Clock()
     fps = 120
 
-    a = characters.Player(100, 100, 1, 1, 20, None, None, None)
+    a = characters.Player(100, 100, 1, 1, 5, None, None, None, player_pos)
     running = True
 
-    x = y = 0
-    for row in beg_room1:
-        for col in row:
-            if col == "-":
-                background = Surface((20, 20))
-                background.fill((255, 0, 255))
-                screen.blit(background, (x, y))
-            else:
-                background = Surface((20, 20))
-                background.fill((0, 0, 0))
-                screen.blit(background, (x, y))
-            x += 20
-            screen.blit(im, player_pos)
-        y += 20
-        x = 0
-        pygame.display.update()
-        pygame.display.flip()
+    s = generate_lvl(battle_room4_r_v, screen)
 
     while running:
-        x = y = 0
-        for row in beg_room1:
-            for col in row:
-                if col == "-":
-                    background = Surface((20, 20))
-                    background.fill((255, 0, 255))
-                    screen.blit(background, (x, y))
-                else:
-                    background = Surface((20, 20))
-                    background.fill((0, 0, 0))
-                    screen.blit(background, (x, y))
-                x += 20
-                screen.blit(im, player_pos)
-            y += 20
-            x = 0
-            pygame.display.update()
-            pygame.display.flip()
+        screen.fill("0x000000")
+        for r in s:
+            b = Surface((20, 20))
+            b.fill((255, 0, 255))
+            screen.blit(b, r)
 
         for e in pygame.event.get():
             if e.type == QUIT:
                 running = False
-            # if e.type == pygame.MOUSEBUTTONDOWN:
-                # a.attack()
+            if e.type == pygame.MOUSEBUTTONDOWN:
+                a.attack()
 
         keys = pygame.key.get_pressed()
 
-        if keys[pygame.K_w]:
-            player_pos.y -= a.get_information()[-1]
-        if keys[pygame.K_s]:
-            player_pos.y += a.get_information()[-1]
-        if keys[pygame.K_a]:
-            player_pos.x -= a.get_information()[-1]
-        if keys[pygame.K_d]:
-            player_pos.x += a.get_information()[-1]
-        if keys[pygame.K_TAB]:
-            a.change_weapon()
+        a.movement()
+
+        ALL_SPRITES.draw(screen)
+        ALL_SPRITES.update()
+
         pygame.display.update()
         pygame.display.flip()
         print(clock.get_fps())
         clock.tick(fps)
+        pygame.display.flip()
     pygame.quit()
 
 

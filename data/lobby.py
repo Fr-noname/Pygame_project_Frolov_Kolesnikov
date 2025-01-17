@@ -28,7 +28,6 @@ def lobby():
                         game.setings()
                     elif 650 <= int(pos[1]) <= 725:
                         running = False
-        screen.blit(image, (1, 1))
         pygame.display.flip()
         print(clock.get_fps())
         clock.tick(fps)
