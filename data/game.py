@@ -9,6 +9,7 @@ from levels.lvls import *
 def start(setings=1, room=1, lvl_nomer=1):
     pygame.init()  # Инициация PyGame
     kills = 30
+    flag = False
     ALL_SPRITES = pygame.sprite.Group()
     size = (1920, 1080)
     player_pos = pygame.Vector2(size[0] // 2, size[1] // 2)
