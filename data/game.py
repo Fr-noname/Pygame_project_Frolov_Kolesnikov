@@ -5,6 +5,7 @@ from data import lobby
 from data.functions import *
 from levels.rooms import *
 from data.classes import *
+from levels.lvls import *
 
 
 def start(setings=1):
@@ -16,16 +17,17 @@ def start(setings=1):
     clock = pygame.time.Clock()
     fps = 120
 
-    a = characters.Player(100, 100, 1, 1, 5, None, None, None, player_pos)
+    a = characters.Player(100, 100, 1, 1, 5, None,
+                          None, None, player_pos, 'BLOB.png')
     running = True
 
-    s = generate_lvl(battle_room4_r_v, screen)
+    s = lvl(2, screen)
 
     while running:
         screen.fill("0x000000")
         for r in s:
             b = Surface((20, 20))
-            b.fill((255, 0, 255))
+            b.fill((0, 0, 0))
             screen.blit(b, r)
 
         for e in pygame.event.get():
@@ -34,8 +36,6 @@ def start(setings=1):
             if e.type == pygame.MOUSEBUTTONDOWN:
                 a.attack()
 
-        keys = pygame.key.get_pressed()
-
         a.movement()
 
         ALL_SPRITES.draw(screen)
@@ -43,7 +43,7 @@ def start(setings=1):
 
         pygame.display.update()
         pygame.display.flip()
-        print(clock.get_fps())
+        # print(clock.get_fps())
         clock.tick(fps)
         pygame.display.flip()
     pygame.quit()

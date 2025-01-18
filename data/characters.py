@@ -1,10 +1,11 @@
 import pygame
-from data.classes import *
 from data.functions import *
+from data.classes import *
+from data.anime import *
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, hp, shield, k_in, k_out, v, weapon1, weapon2, juwelery, player_pos):
+    def __init__(self, hp, shield, k_in, k_out, v, weapon1, weapon2, juwelery, player_pos, image_name):
         super().__init__(ALL_SPRITES)
         self.hp = hp
         self.shield = shield
@@ -17,10 +18,15 @@ class Player(pygame.sprite.Sprite):
         self.w = 0
         self.x = player_pos.x
         self.y = player_pos.y
-        self.image = load_image('Port_swprdman.png')
+        self.image = load_image(image_name)
         self.rect = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
+        self.px = self.x
+        self.py = self.y
+        self.mask = pygame.mask.from_surface(self.image)
 
     def movement(self):
+        self.px = self.x
+        self.py = self.y
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
             self.y -= self.v
@@ -55,6 +61,11 @@ class Player(pygame.sprite.Sprite):
 
     def return_pos(self):
         return self.x, self.y
+
+    def update(self):
+        if pygame.sprite.spritecollideany(self, KLETKA):
+            self.x = self.px
+            self.y = self.py
 
 
 class Egor(Player):

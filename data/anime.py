@@ -1,22 +1,17 @@
-import random
-import time
+import os
+import sys
+import pygame
 
-from data import functions
 
-
-def lobby_anime(screen):
-    screen = screen[0]
-    im_1 = functions.load_image('lobby.png')
-    im_2 = functions.load_image('lobby-1.png')
-    im_3 = functions.load_image('lobby-2.png')
-    screen.blit(im_1, (1, 1))
-    a = random.randrange(1, 40)
-    # time.sleep(a)
-    for r in range(random.randrange(1, 10)):
-        a = random.randrange(1, 5)
-        b = random.randrange(1, 5)
-        screen.blit(im_2, (1, 1))
-        time.sleep(a)
-        screen.blit(im_3, (1, 1))
-        time.sleep(b)
-    screen.blit(im_1, (1, 1))
+def load_image(name, colorkey=None):
+    fullname = os.path.join('images', name)
+    if not os.path.isfile(fullname):
+        print(f'Файл с изображением {fullname} не найден')
+        sys.exit()
+    image = pygame.image.load(fullname)
+    if colorkey is not None:
+        image = image.convert()  # создаёт новую копию изображения с таким же форматом пикселей, как у экрана
+        if colorkey == -1:
+            colorkey = image.get_at((0, 0))
+        image.set_colorkey(colorkey)
+    return image

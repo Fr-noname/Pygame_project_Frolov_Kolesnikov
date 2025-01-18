@@ -1,4 +1,9 @@
+import os
+import sys
+
 import pygame
+from data.functions import *
+from data.anime import *
 
 
 ALL_SPRITES = pygame.sprite.Group()
@@ -46,9 +51,9 @@ class AnimatedSprite(pygame.sprite.Sprite):
 
 
 class Border(pygame.sprite.Sprite):
-    # строго вертикальный или строго горизонтальный отрезок
-    def __init__(self):
+    def __init__(self, x, y, image_name):
         super().__init__(ALL_SPRITES)
         self.add(KLETKA)
-        self.image = pygame.Surface([1, y2 - ])
-        self.rect = pygame.Rect(x1, y1, 1, y2 - y1)
+        self.image = load_image(image_name)
+        self.rect = pygame.Rect(x, y, 20, 20)
+

@@ -1,23 +1,22 @@
-lvl1 = ['  b',
-        'fff',
-        'e  ']  # b - начальная комната, f - комната битвы, e - комната конца.
+import random
+from levels.rooms import *
+from data.functions import *
 
-lvl2 = ['eff',
-        ' bf']
+KILLS_ON_LVL = 0
+ROOM = 1
+BEG_ROOMS = [beg_room1, beg_room2, beg_room3]
+BATTLE_ROOMS = [battle_room1_l_v, battle_room2_r_l, battle_room3_l_n, battle_room4_r_v, battle_room5_r_n]
+BOSS_ROOMS = [battle_room2_r_l, battle_room3_l_n]
 
-lvl3 = ['e ',
-        'ff',
-        ' f',
-        ' b']
 
-boss_lvl1 = ['  b',
-             'fff',
-             'B  ']  # b - начальная комната, f - комната битвы, B - комната босса
-
-boss_lvl2 = ['Bff',
-             ' bf']
-
-boss_lvl3 = ['B ',
-             'ff',
-             ' f',
-             ' b']
+def lvl(n, screen):
+    if ROOM % 5 == 1:
+        name = random.choice(BEG_ROOMS)
+        s = generate_lvl(name, screen, n)
+    elif ROOM % 5 == 0 and KILLS_ON_LVL <= 30:
+        name = random.choice(BOSS_ROOMS)
+        s = generate_lvl(name, screen, n)
+    else:
+        name = random.choice(BATTLE_ROOMS)
+        s = generate_lvl(name, screen, n)
+    return s

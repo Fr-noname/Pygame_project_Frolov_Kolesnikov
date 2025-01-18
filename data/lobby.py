@@ -1,13 +1,12 @@
 import pygame
-
-from data import functions
 from data import game
 from data.functions import DifficultyNomer
+from data.anime import *
 
 
 def lobby():
     pygame.init()
-    image = functions.load_image('lobby.png')
+    image = load_image('lobby.png')
     size = w, h = (1920, 1080)
     screen = pygame.display.set_mode(size)
     clock = pygame.time.Clock()
