@@ -8,6 +8,7 @@ from levels.lvls import *
 
 def start(setings=1, room=1, lvl_nomer=1):
     pygame.init()  # Инициация PyGame
+    kills = 30
     ALL_SPRITES = pygame.sprite.Group()
     size = (1920, 1080)
     player_pos = pygame.Vector2(size[0] // 2, size[1] // 2)
@@ -21,7 +22,7 @@ def start(setings=1, room=1, lvl_nomer=1):
                           None, None, player_pos, 'BLOB.png', ALL_SPRITES)
     running = True
 
-    s = lvl(lvl_nomer, screen, room, ALL_SPRITES)
+    s = lvl(lvl_nomer, screen, room, ALL_SPRITES, kills)
 
     while running:
         screen.fill("0x000000")
@@ -42,7 +43,7 @@ def start(setings=1, room=1, lvl_nomer=1):
         ALL_SPRITES.update()
 
         pos = a.return_pos()
-        if int(pos[0]) <= -50 or int(pos[0]) >= 1920 or int(pos[1]) <= 0 or int(pos[1]) >= 1080:
+        if int(pos[0]) <= -50 or int(pos[0]) >= 1920 or int(pos[1]) <= -50 or int(pos[1]) >= 1080:
             room += 1
             flag = True
             running = False
@@ -56,6 +57,10 @@ def start(setings=1, room=1, lvl_nomer=1):
     if flag:
         for r in ALL_SPRITES:
             r.kill()
+
+        if room % 5 == 1 and kills // 30 >= 1:
+            lvl_nomer += 1
+
         start(room=room, lvl_nomer=lvl_nomer)
 
 
