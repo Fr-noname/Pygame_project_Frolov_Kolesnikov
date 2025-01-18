@@ -1,11 +1,9 @@
-import pygame
-from data.functions import *
-from data.classes import *
 from data.anime import *
+from data.classes import *
 
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, hp, shield, k_in, k_out, v, weapon1, weapon2, juwelery, player_pos, image_name):
+    def __init__(self, hp, shield, k_in, k_out, v, weapon1, weapon2, juwelery, player_pos, image_name, ALL_SPRITES):
         super().__init__(ALL_SPRITES)
         self.hp = hp
         self.shield = shield
@@ -60,7 +58,7 @@ class Player(pygame.sprite.Sprite):
         self.w += 1
 
     def return_pos(self):
-        return self.x, self.y
+        return [self.x, self.y]
 
     def update(self):
         if pygame.sprite.spritecollideany(self, KLETKA):

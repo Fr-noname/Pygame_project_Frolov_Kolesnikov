@@ -2,31 +2,31 @@ from pygame import QUIT
 
 from data import characters
 from data import lobby
-from data.functions import *
-from levels.rooms import *
-from data.classes import *
+from data.anime import *
 from levels.lvls import *
 
 
-def start(setings=1):
+def start(setings=1, room=1, lvl_nomer=1):
     pygame.init()  # Инициация PyGame
+    ALL_SPRITES = pygame.sprite.Group()
     size = (1920, 1080)
     player_pos = pygame.Vector2(size[0] // 2, size[1] // 2)
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("Until it Done")
     clock = pygame.time.Clock()
     fps = 120
+    screen.fill((0, 0, 0))
 
     a = characters.Player(100, 100, 1, 1, 5, None,
-                          None, None, player_pos, 'BLOB.png')
+                          None, None, player_pos, 'BLOB.png', ALL_SPRITES)
     running = True
 
-    s = lvl(2, screen)
+    s = lvl(lvl_nomer, screen, room, ALL_SPRITES)
 
     while running:
         screen.fill("0x000000")
         for r in s:
-            b = Surface((20, 20))
+            b = pygame.Surface((20, 20))
             b.fill((0, 0, 0))
             screen.blit(b, r)
 
@@ -41,12 +41,22 @@ def start(setings=1):
         ALL_SPRITES.draw(screen)
         ALL_SPRITES.update()
 
+        pos = a.return_pos()
+        if int(pos[0]) <= -50 or int(pos[0]) >= 1920 or int(pos[1]) <= 0 or int(pos[1]) >= 1080:
+            room += 1
+            flag = True
+            running = False
+
         pygame.display.update()
         pygame.display.flip()
-        # print(clock.get_fps())
+        print(clock.get_fps())
         clock.tick(fps)
         pygame.display.flip()
     pygame.quit()
+    if flag:
+        for r in ALL_SPRITES:
+            r.kill()
+        start(room=room, lvl_nomer=lvl_nomer)
 
 
 def setings():

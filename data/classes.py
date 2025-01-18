@@ -1,12 +1,6 @@
-import os
-import sys
-
-import pygame
-from data.functions import *
 from data.anime import *
+from data.functions import *
 
-
-ALL_SPRITES = pygame.sprite.Group()
 KLETKA = pygame.sprite.Group()
 
 
@@ -30,7 +24,7 @@ class Camera:
 
 
 class AnimatedSprite(pygame.sprite.Sprite):
-    def __init__(self, sheet, columns, rows, x, y):
+    def __init__(self, sheet, columns, rows, x, y, ALL_SPRITES):
         super().__init__(ALL_SPRITES)
         self.frames = []
         self.cut_sheet(sheet, columns, rows)
@@ -51,9 +45,8 @@ class AnimatedSprite(pygame.sprite.Sprite):
 
 
 class Border(pygame.sprite.Sprite):
-    def __init__(self, x, y, image_name):
+    def __init__(self, x, y, image_name, ALL_SPRITES):
         super().__init__(ALL_SPRITES)
         self.add(KLETKA)
         self.image = load_image(image_name)
         self.rect = pygame.Rect(x, y, 20, 20)
-

@@ -1,16 +1,9 @@
-import os
 import random
-import sys
-
 import pygame
-from pygame import Surface
-from data.classes import *
-from data.anime import *
-
 PIXEL = (20, 20)
 
 
-def generate_lvl(name, screen, n):
+def generate_lvl(name, screen, n, ALL_SPRITES):
     x = y = 0
     s = []
     if n == 2:
@@ -19,14 +12,17 @@ def generate_lvl(name, screen, n):
         for col in row:
             if col == "-":
                 if n == 1:
-                    a = Border(x, y, 'lvl1_wall.png')
+                    from data.classes import Border
+                    a = Border(x, y, 'lvl1_wall.png', ALL_SPRITES)
                 elif n == 3:
-                    a = Border(x, y, 'lvl3_wall.png')
+                    from data.classes import Border
+                    a = Border(x, y, 'lvl3_wall.png', ALL_SPRITES)
                 else:
-                    a = Border(x, y, wall)
+                    from data.classes import Border
+                    a = Border(x, y, wall, ALL_SPRITES)
             else:
                 s.append([x, y])
-                background = Surface(PIXEL)
+                background = pygame.Surface(PIXEL)
                 background.fill((0, 0, 0))
                 screen.blit(background, (x, y))
             x += PIXEL[0]

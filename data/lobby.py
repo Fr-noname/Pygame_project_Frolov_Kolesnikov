@@ -1,7 +1,6 @@
-import pygame
 from data import game
-from data.functions import DifficultyNomer
 from data.anime import *
+from data.functions import DifficultyNomer
 
 
 def lobby():
