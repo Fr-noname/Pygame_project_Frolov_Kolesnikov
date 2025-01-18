@@ -37,7 +37,7 @@ class PrisonOfEyes:  # Для Пожирателя душ
         return damage
 
 
-class RingOfPower:
+class RingOfPower: # Берсерк
     def berserk(self, hp, shield):
         k_out = ((101 - hp) + (50 - shield)) / 4
         return k_out

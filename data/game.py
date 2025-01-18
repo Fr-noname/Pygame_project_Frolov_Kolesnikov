@@ -1,9 +1,10 @@
-from pygame import QUIT
+import pygame
 
 from data import characters
 from data import lobby
 from data.anime import *
 from levels.lvls import *
+from data.characters_init import *
 
 
 def start(setings=1, room=1, lvl_nomer=1):
@@ -19,8 +20,7 @@ def start(setings=1, room=1, lvl_nomer=1):
     fps = 120
     screen.fill((0, 0, 0))
 
-    a = characters.Player(100, 100, 1, 1, 5, None,
-                          None, None, player_pos, 'BLOB.png', ALL_SPRITES)
+    a = paladin_init(player_pos, ALL_SPRITES)
     running = True
 
     s = lvl(lvl_nomer, screen, room, ALL_SPRITES, kills)
@@ -33,7 +33,7 @@ def start(setings=1, room=1, lvl_nomer=1):
             screen.blit(b, r)
 
         for e in pygame.event.get():
-            if e.type == QUIT:
+            if e.type == pygame.QUIT:
                 running = False
             if e.type == pygame.MOUSEBUTTONDOWN:
                 a.attack()
