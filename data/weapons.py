@@ -3,13 +3,12 @@ from time import sleep
 
 
 class Weapon:
-    def __init__(self, damage, attack_speed, r, s, name):  # r - дальность атаки, s - толщина
+    def __init__(self, damage, attack_speed, r, s):  # r - дальность атаки, s - толщина
         self.damage = damage
         self.attack_speed = attack_speed
         self.r = r
         self.s = s
         self.min_s = 9999999999999999999999999999
-        self.name = name
 
     def atack(self, spisok_mob_id, player_pos):
         self.min_s = 9999999999999999999999999999

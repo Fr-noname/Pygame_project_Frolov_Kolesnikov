@@ -1,9 +1,14 @@
 import random
 from math import sqrt
+import pygame
+from data.anime import *
 
 
-class Enemy:
-    def __init__(self, id, position, k_in, k_out, r, dam):  # k_in - то, сколько % урона получает моб, r - радиус атаки.
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self, id, position, k_in, k_out, r, dam, ALL_SPRITES, image_name):
+        # k_in - то, сколько % урона получает моб, r - радиус атаки.
+        super().__init__(ALL_SPRITES)
+        self.image = load_image(image_name)
         self.id = id
         self.pos = position
         self.hp = 100

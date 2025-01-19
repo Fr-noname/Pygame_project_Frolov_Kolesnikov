@@ -5,6 +5,7 @@ from data import lobby
 from data.anime import *
 from levels.lvls import *
 from data.characters_init import *
+from data.mob_init import *
 
 
 def start(setings=1, room=1, lvl_nomer=1):
@@ -94,3 +95,16 @@ def setings():
         pygame.display.flip()
     pygame.quit()
     lobby.lobby()
+
+
+def choose_of_character():
+    pygame.init()  # Инициация PyGame
+    size = (1920, 1080)
+    screen = pygame.display.set_mode(size)
+    pygame.display.set_caption("Until it Done")
+    clock = pygame.time.Clock()
+    fps = 120
+    screen.fill((0, 0, 0))
+    running = True
+    while running:
+        pass
