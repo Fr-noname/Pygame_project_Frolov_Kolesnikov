@@ -1,5 +1,5 @@
 import random
-
+from data.mob_init import *
 from data.functions import *
 from levels.rooms import *
 
@@ -18,5 +18,6 @@ def lvl(n, screen, room, ALL_SPRITES, kills):
     else:
         name = random.choice(BATTLE_ROOMS)
         s = generate_lvl(name, screen, n, ALL_SPRITES)
-    return s
+    mob_test = archer_lvl1_init(1, (20, 20), ALL_SPRITES)
+    return s, mob_test
 

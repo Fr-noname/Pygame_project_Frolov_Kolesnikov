@@ -2,15 +2,16 @@ import random
 from math import sqrt
 import pygame
 from data.anime import *
+from data.classes import *
 
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, id, position, k_in, k_out, r, dam, ALL_SPRITES, image_name):
         # k_in - то, сколько % урона получает моб, r - радиус атаки.
         super().__init__(ALL_SPRITES)
+        self.mob_pos = pygame.Vector2(position)
         self.image = load_image(image_name)
         self.id = id
-        self.pos = position
         self.hp = 100
         self.shield = 50
         self.k_in = k_in
@@ -20,9 +21,15 @@ class Enemy(pygame.sprite.Sprite):
         self.min_s = 9999999999999999999999999999
         self.archer_id = 0
         self.s_to_player = 0
+        self.x = self.mob_pos.x
+        self.y = self.mob_pos.y
+        self.px = self.x
+        self.py = self.y
+        self.rect = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
 
     def atack(self, player_pos):
-        s_to_player = sqrt((int(player_pos[0]) - int(self.pos[0])) ** 2 + (int(player_pos[1]) - int(self.pos[1])) ** 2)
+        s_to_player = sqrt((int(player_pos[0]) - int(self.mob_pos[0])) ** 2 + (int(player_pos[1])
+                                                                               - int(self.mob_pos[1])) ** 2)
         if s_to_player <= self.radius:
             self.damaging()
 
@@ -45,38 +52,31 @@ class Enemy(pygame.sprite.Sprite):
         pass
 
     def movemnt(self, player_pos):
-        s_to_player = sqrt((int(player_pos[0]) - int(self.pos[0])) ** 2 + (int(player_pos[1]) - int(self.pos[1])) ** 2)
-        if self.hp == 100:
-            if s_to_player < self.radius // 3 + 1:
-                a = random.randrange(0, 5)
-                if a == 0:
-                    pass
-                else:
-                    pass
-            elif self.r >= s_to_player >= self.radius // 3 + 1:
-                a = random.randrange(0, 10)
-                if a == 0:
-                    self.atack()
-            else:
-                if s_to_player <= 5 * self.radius:
-                    self.move_to_player(player_pos)
-        else:
-            if s_to_player < self.radius // 2 + 1:
-                a = random.randrange(0, 1)
-                if a == 0:
-                    pass
-                else:
-                    pass
-            elif self.r >= s_to_player >= self.radius // 2 + 1:
-                a = random.randrange(0, 5)
-                if a == 0:
-                    self.damaging()
-            else:
-                if s_to_player <= self.radius * 5 + self.radius // 2:
-                    self.move_to_player(player_pos)
+        self.px = self.x
+        self.py = self.y
+        vx = (player_pos[0] - self.x) // 60
+        vy = (player_pos[1] - self.y) // 60
+        self.x += vx
+        self.y += vy
+        self.rect = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
 
     def get_id(self):
         return self.id
+
+    def update(self):
+        if pygame.sprite.spritecollideany(self, KLETKA):
+            self.x = self.px
+            self.y = self.py
+            self.x += 10
+            if pygame.sprite.spritecollideany(self, KLETKA):
+                self.x = self.px
+                self.y += 10
+                if pygame.sprite.spritecollideany(self, KLETKA):
+                    self.y = self.py
+                else:
+                    self.y += 10
+            else:
+                self.x += 10
 
 
 class Archer(Enemy):

@@ -21,10 +21,10 @@ def start(setings=1, room=1, lvl_nomer=1):
     fps = 120
     screen.fill((0, 0, 0))
 
-    a = paladin_init(player_pos, ALL_SPRITES)
+    a = general_init(player_pos, ALL_SPRITES)
     running = True
 
-    s = lvl(lvl_nomer, screen, room, ALL_SPRITES, kills)
+    s, mob_test = lvl(lvl_nomer, screen, room, ALL_SPRITES, kills)
 
     while running:
         screen.fill("0x000000")
@@ -40,6 +40,7 @@ def start(setings=1, room=1, lvl_nomer=1):
                 a.attack()
 
         a.movement()
+        mob_test.movemnt(a.return_pos())
 
         ALL_SPRITES.draw(screen)
         ALL_SPRITES.update()
