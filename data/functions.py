@@ -33,6 +33,23 @@ def generate_lvl(name, screen, n, ALL_SPRITES):
     return s
 
 
+# def generate_mobs(name, screen, n, ALL_SPRITES, lvl):
+#     spisok = []
+#     for i in range(7):
+#         if lvl == 1:
+#             a = random.randrange(0, 2)
+#             if a % 3 == 0:
+#                 s = archer_lvl1_init()
+#         if lvl == 2:
+#             a = random.randrange(0, 2)
+#             if a % 3 == 0:
+#                 s = archer_lvl2_init()
+#         if lvl == 3:
+#             a = random.randrange(0, 2)
+#             if a % 3 == 0:
+#                 s = archer_lvl3_init()
+
+
 global DifficultyNomer
 DifficultyNomer = 1
 
