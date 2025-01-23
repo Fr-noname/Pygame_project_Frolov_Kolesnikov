@@ -108,4 +108,4 @@ def choose_of_character():
     screen.fill((0, 0, 0))
     running = True
     while running:
-        pass
+        print(1)
