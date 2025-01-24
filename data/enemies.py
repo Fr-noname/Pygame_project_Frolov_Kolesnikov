@@ -65,18 +65,22 @@ class Enemy(pygame.sprite.Sprite):
 
     def update(self):
         if pygame.sprite.spritecollideany(self, KLETKA):
-            self.x = self.px
-            self.y = self.py
-            self.x += 10
-            if pygame.sprite.spritecollideany(self, KLETKA):
-                self.x = self.px
-                self.y += 10
-                if pygame.sprite.spritecollideany(self, KLETKA):
-                    self.y = self.py
-                else:
-                    self.y += 10
-            else:
-                self.x += 10
+            x = random.randrange(-1, 2)
+            y = random.randrange(-1, 2)
+            self.x += x * 40
+            self.y += y * 40
+            # self.x = self.px
+            # self.y = self.py
+            # self.x += 10
+            # if pygame.sprite.spritecollideany(self, KLETKA):
+            #     self.x = self.px
+            #     self.y += 10
+            #     if pygame.sprite.spritecollideany(self, KLETKA):
+            #         self.y = self.py
+            #     else:
+            #         self.y += 10
+            # else:
+            #     self.x += 10
 
 
 class Archer(Enemy):
