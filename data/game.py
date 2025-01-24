@@ -24,7 +24,7 @@ def start(setings=1, room=1, lvl_nomer=1):
     a = general_init(player_pos, ALL_SPRITES)
     running = True
 
-    s, mob_test = lvl(lvl_nomer, screen, room, ALL_SPRITES, kills)
+    s, mobs = lvl(lvl_nomer, screen, room, ALL_SPRITES, kills, lvl_nomer)
 
     while running:
         screen.fill("0x000000")
@@ -40,7 +40,8 @@ def start(setings=1, room=1, lvl_nomer=1):
                 a.attack()
 
         a.movement()
-        mob_test.movemnt(a.return_pos())
+        for mob_test in mobs:
+            mob_test.movemnt(a.return_pos())
 
         ALL_SPRITES.draw(screen)
         ALL_SPRITES.update()

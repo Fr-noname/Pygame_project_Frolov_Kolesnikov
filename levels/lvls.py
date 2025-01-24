@@ -2,13 +2,14 @@ import random
 from data.mob_init import *
 from data.functions import *
 from levels.rooms import *
+from data.classes import KLETKA
 
 BEG_ROOMS = [beg_room1, beg_room2, beg_room3]
 BATTLE_ROOMS = [battle_room1_l_v, battle_room2_r_l, battle_room3_l_n, battle_room4_r_v, battle_room5_r_n]
 BOSS_ROOMS = [battle_room2_r_l, battle_room3_l_n]
 
 
-def lvl(n, screen, room, ALL_SPRITES, kills):
+def lvl(n, screen, room, ALL_SPRITES, kills, lvl):
     if room % 5 == 1:
         name = random.choice(BEG_ROOMS)
         s = generate_lvl(name, screen, n, ALL_SPRITES)
@@ -18,6 +19,6 @@ def lvl(n, screen, room, ALL_SPRITES, kills):
     else:
         name = random.choice(BATTLE_ROOMS)
         s = generate_lvl(name, screen, n, ALL_SPRITES)
-    mob_test = archer_lvl1_init(1, (20, 20), ALL_SPRITES)
-    return s, mob_test
+    mobs = generate_mobs(1, ALL_SPRITES, lvl, KLETKA)
+    return s, mobs
 
