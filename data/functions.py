@@ -1,7 +1,6 @@
 import random
 import pygame
 
-from data.classes import KLETKA
 from data.mob_init import *
 
 PIXEL = (20, 20)

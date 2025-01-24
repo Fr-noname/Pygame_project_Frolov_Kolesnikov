@@ -40,8 +40,9 @@ def start(setings=1, room=1, lvl_nomer=1):
                 a.attack()
 
         a.movement()
-        for mob_test in mobs:
-            mob_test.movemnt(a.return_pos())
+        mobs.movemnt(a.return_pos())
+        # for mob_test in mobs:
+        #     mob_test.movemnt(a.return_pos())
 
         ALL_SPRITES.draw(screen)
         ALL_SPRITES.update()

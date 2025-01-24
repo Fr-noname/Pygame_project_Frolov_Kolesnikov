@@ -1,5 +1,4 @@
 from data.anime import *
-from data.functions import *
 
 KLETKA = pygame.sprite.Group()
 

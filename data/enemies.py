@@ -2,7 +2,7 @@ import random
 from math import sqrt
 import pygame
 from data.anime import *
-from data.classes import *
+from data.classes import KLETKA
 
 
 class Enemy(pygame.sprite.Sprite):
@@ -65,10 +65,8 @@ class Enemy(pygame.sprite.Sprite):
 
     def update(self):
         if pygame.sprite.spritecollideany(self, KLETKA):
-            x = random.randrange(-1, 2)
-            y = random.randrange(-1, 2)
-            self.x += x * 40
-            self.y += y * 40
+            x = random.choice([-1, 1])
+            self.x += x * 20
             # self.x = self.px
             # self.y = self.py
             # self.x += 10
