@@ -1,5 +1,6 @@
 from data.anime import *
 from data.classes import *
+from math import *
 
 
 class Player(pygame.sprite.Sprite):
@@ -36,7 +37,7 @@ class Player(pygame.sprite.Sprite):
             self.x += self.v
         self.rect = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
 
-    def taking_damage(self, damage):
+    def incoming_damage(self, damage):
         if self.shield <= 0:
             self.hp -= damage * self.k_in
         else:
@@ -45,14 +46,16 @@ class Player(pygame.sprite.Sprite):
     def get_information(self):
         return [self.hp, self.shield, self.k_in, self.k_out, self.juwelery, self.v]
 
-    def attack(self):
+    def attack(self, *mobs):
         if self.w % 2 == 0:
-            pass
+            for r in mobs:
+                x, y = r.get_pos()
+                s_to_mob = sqrt((self.x - x) ** 2 + (self.y - y) ** 2)
+                if s_to_mob <= self.weapon1.attack():
+                    r.incoming_damage(self.weapon1.damage * self.k_out)
+
         else:
             pass
-
-    def death(self):
-        pass
 
     def change_weapon(self):
         self.w += 1

@@ -33,8 +33,13 @@ class Enemy(pygame.sprite.Sprite):
         if s_to_player <= self.radius:
             self.damaging()
 
-    def damaging(self):
-        pass
+    def damaging(self, player):
+        a = random.randrange(0, 25)
+        if a == 0:
+            pos = player.return_pos()
+            s_to_player = sqrt((self.x - pos[0]) ** 2 + (self.y - pos[1]) ** 2)
+            if s_to_player <= self.radius:
+                player.incoming_damage(self.damage * self.k_out)
 
     def incoming_damage(self, damage):
         if self.shield <= 0:
@@ -49,7 +54,7 @@ class Enemy(pygame.sprite.Sprite):
         return self.hp, self.shield
 
     def death(self):
-        pass
+        return self.id
 
     def movemnt(self, player_pos):
         self.px = self.x
@@ -67,6 +72,14 @@ class Enemy(pygame.sprite.Sprite):
         if pygame.sprite.spritecollideany(self, KLETKA):
             x = random.choice([-1, 1])
             self.x += x * 20
+        if pygame.sprite.spritecollideany(self, KLETKA):
+            self.x = self.px
+        if pygame.sprite.spritecollideany(self, KLETKA):
+            y = random.choice([-1, 1])
+            self.y += y * 20
+        if pygame.sprite.spritecollideany(self, KLETKA):
+            self.y = self.py
+
             # self.x = self.px
             # self.y = self.py
             # self.x += 10
@@ -79,10 +92,12 @@ class Enemy(pygame.sprite.Sprite):
             #         self.y += 10
             # else:
             #     self.x += 10
+    def get_pos(self):
+        return self.x, self.y
 
 
 class Archer(Enemy):
-    def damaging(self):
+    def damaging(self, a):
         a = random.randrange(0, 4)
         dam = random.randrange(self.damage)
         if a == 0:  # Попал
@@ -111,6 +126,4 @@ class Tank(Enemy):
 
 
 class SwordMan(Enemy):
-    def damaging(self):
-        a = random.randrange(10, self.damage)
-        return a
+    pass

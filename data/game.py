@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 from data import characters
 from data import lobby
@@ -37,15 +38,27 @@ def start(setings=1, room=1, lvl_nomer=1):
             if e.type == pygame.QUIT:
                 running = False
             if e.type == pygame.MOUSEBUTTONDOWN:
-                a.attack()
+                a.attack(mobs)
+
+        # for r in list(mobs):
+        #     if r.hp <= 0:
+        #         r.kill()
+        if mobs.hp <= 0:  # тест моб
+            mobs.kill()
+
+        if a.hp <= 0:
+            a.kill()
+            running = False
 
         a.movement()
-        mobs.movemnt(a.return_pos())
+        mobs.movemnt(a.return_pos())  # тест моб
         # for mob_test in mobs:
         #     mob_test.movemnt(a.return_pos())
 
         ALL_SPRITES.draw(screen)
         ALL_SPRITES.update()
+
+        mobs.damaging(a)
 
         pos = a.return_pos()
         if int(pos[0]) <= -50 or int(pos[0]) >= 1920 or int(pos[1]) <= -50 or int(pos[1]) >= 1080:
@@ -67,6 +80,7 @@ def start(setings=1, room=1, lvl_nomer=1):
             lvl_nomer += 1
 
         start(room=room, lvl_nomer=lvl_nomer)
+    sys.exit()
 
 
 def setings():

@@ -3,40 +3,20 @@ from time import sleep
 
 
 class Weapon:
-    def __init__(self, damage, attack_speed, r, s):  # r - дальность атаки, s - толщина
+    def __init__(self, damage, r):  # r - дальность атаки
         self.damage = damage
-        self.attack_speed = attack_speed
         self.r = r
-        self.s = s
-        self.min_s = 9999999999999999999999999999
 
-    def atack(self, spisok_mob_id, player_pos):
-        self.min_s = 9999999999999999999999999999
-        min_id = 0
-        for i in spisok_mob_id:
-            id = i[0]
-            x, y = i[1]
-            s_to_mob = sqrt((int(player_pos[0]) - int(x)) ** 2 +
-                            (int(player_pos[1]) - int(y) ** 2))
-            if s_to_mob <= self.min_s:
-                self.min_s = s_to_mob
-                min_id = id
-        if self.min_s <= self.r:
-            self.deal_damage(min_id)
+    def attack(self):
+        return self.r
 
-    def deal_damage(self, id):
-        pass
-
-    def kd(self):
-        sleep(1 / self.attack_speed)
+    def damage(self):
+        return self.damage
 
 
-class Bow(Weapon):
-    def __init__(self, damage, attack_speed, r, s):
-        super().__init__()
+class Bow:
+    def __init__(self, damage, s):
         self.damage = damage
-        self.attack_speed = attack_speed
-        self.r = r
         self.s = s
         self.min_s = 9999999999999999999999999999
 
@@ -52,7 +32,7 @@ class Kokorowatary(Weapon):  # Перс Никиты
     pass
 
 
-class UnlimitedRuleBook(Weapon):  # Перс Никиты
+class UnlimitedRuleBook(Bow):  # Перс Никиты
     pass
 
 
@@ -60,7 +40,7 @@ class HolyChain(Weapon):  # Паладин
     pass
 
 
-class Crucifix(Weapon):  # Паладин
+class Crucifix(Bow):  # Паладин
     pass
 
 
@@ -68,7 +48,7 @@ class Vakidzasi(Weapon):  # Скорпиус
     pass
 
 
-class ThrowingKnife(Weapon):  # Скорпиус
+class ThrowingKnife(Bow):  # Скорпиус
     pass
 
 
@@ -76,7 +56,7 @@ class Axe(Weapon):  # Берсерк
     pass
 
 
-class ThrowingAxe(Weapon):  # Берсерк
+class ThrowingAxe(Bow):  # Берсерк
     pass
 
 
@@ -84,11 +64,11 @@ class Book(Weapon):  # Егор
     pass
 
 
-class KubikD4(Weapon):  # Егор
+class KubikD4(Bow):  # Егор
     pass
 
 
-class MysteriousGloves(Weapon):  # SoulEater
+class MysteriousGloves(Bow):  # SoulEater
     pass
 
 

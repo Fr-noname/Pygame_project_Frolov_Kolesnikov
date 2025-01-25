@@ -15,8 +15,12 @@ class SecretKubik:  # Для перса Егора
 
 
 class Krest:  # Для паладина
-    def help_of_god(self, *negative_effects):  # Увеличивает hp за полученные негативные эффекты, пассивный
-        return len(negative_effects) * 2, []
+    def help_of_god(self, damage):  # C шансом 50% обнуляет урон
+        x = random.randrange(0, 11)
+        if x <= 5:
+            return 0
+        else:
+            return damage
 
     def power_of_paladin(self):  # Примерно, как 2-ая абилка паладина из soul Knight
         pass
@@ -42,8 +46,8 @@ class RingOfPower: # Берсерк
         k_out = ((101 - hp) + (50 - shield)) / 4
         return k_out
 
-    def berserk(self):  # Увеличивает скорость атаки в 2 раза, урон - в 20, длиться 20 сек
-        return 2, 20, 20
+    def berserk(self):  # Увеличивает урон - в 20, длиться 20 сек
+        return 20, 20
 
 
 class GoldWatch:
@@ -52,7 +56,7 @@ class GoldWatch:
         return k
 
     def rabbit_hole(self):  # телепортирует на 200 пикселей по напралению взгляда
-        pass
+        return 200
 
 
 class PlaqueOfGeneral:
