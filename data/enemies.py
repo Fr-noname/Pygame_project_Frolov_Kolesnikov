@@ -2,7 +2,7 @@ import random
 from math import sqrt
 import pygame
 from data.anime import *
-from data.classes import KLETKA
+from data.sprite_groups import KLETKA
 
 
 class Enemy(pygame.sprite.Sprite):

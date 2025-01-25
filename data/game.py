@@ -38,7 +38,10 @@ def start(setings=1, room=1, lvl_nomer=1):
             if e.type == pygame.QUIT:
                 running = False
             if e.type == pygame.MOUSEBUTTONDOWN:
-                a.attack(mobs)
+                if e.button == 1:
+                    a.attack(mobs, ALL_SPRITES=ALL_SPRITES, w=0)
+                if e.button == 3:
+                    a.attack(mobs, ALL_SPRITES=ALL_SPRITES, w=1)
 
         # for r in list(mobs):
         #     if r.hp <= 0:
@@ -51,7 +54,8 @@ def start(setings=1, room=1, lvl_nomer=1):
             running = False
 
         a.movement()
-        mobs.movemnt(a.return_pos())  # тест моб
+        if mobs.hp > 0:
+            mobs.movemnt(a.return_pos())  # тест моб
         # for mob_test in mobs:
         #     mob_test.movemnt(a.return_pos())
 
@@ -68,7 +72,7 @@ def start(setings=1, room=1, lvl_nomer=1):
 
         pygame.display.update()
         pygame.display.flip()
-        print(clock.get_fps())
+        # print(clock.get_fps())
         clock.tick(fps)
         pygame.display.flip()
     pygame.quit()
