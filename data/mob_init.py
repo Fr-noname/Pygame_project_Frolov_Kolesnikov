@@ -97,3 +97,8 @@ def elite_tank_lvl2_init(id, pos, ALL_SPRITES):
 def elite_tank_lvl3_init(id, pos, ALL_SPRITES):
     a = Tank(id, pos, 0.3, 1.25, 25, 21, ALL_SPRITES, 'BLOB.png')
     return a
+
+
+def Boss_lvl1_init(id, pos, ALL_SPRITES):
+    a = Tank(id, pos, 0.2, 1.9, 100, 40, ALL_SPRITES, 'BOSS_PORT.png')
+    return a

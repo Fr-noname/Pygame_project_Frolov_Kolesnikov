@@ -47,6 +47,7 @@ class Enemy(pygame.sprite.Sprite):
             self.hp -= damage * self.k_in
         else:
             self.shield -= damage * self.k_in
+        print(self.shield, self.hp)
 
     def move_to_player(self, player_pos):
         pass
