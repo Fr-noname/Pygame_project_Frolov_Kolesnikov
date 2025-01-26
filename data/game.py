@@ -62,7 +62,7 @@ def start(setings=1, room=1, lvl_nomer=1):
         ALL_SPRITES.draw(screen)
         ALL_SPRITES.update()
 
-        mobs.damaging(a)
+        mobs.damaging(a, ALL_SPRITES=ALL_SPRITES)
 
         pos = a.return_pos()
         if int(pos[0]) <= -50 or int(pos[0]) >= 1920 or int(pos[1]) <= -50 or int(pos[1]) >= 1080:

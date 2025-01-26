@@ -41,6 +41,7 @@ class Player(pygame.sprite.Sprite):
             self.hp -= damage * self.k_in
         else:
             self.shield -= damage * self.k_in
+        print(self.shield, self.hp)
 
     def get_information(self):
         return [self.hp, self.shield, self.k_in, self.k_out, self.juwelery, self.v]

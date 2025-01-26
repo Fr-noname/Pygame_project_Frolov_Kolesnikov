@@ -1,6 +1,7 @@
 import random
 from math import sqrt
 import pygame
+from data.classes import *
 from data.anime import *
 from data.sprite_groups import KLETKA
 
@@ -33,7 +34,7 @@ class Enemy(pygame.sprite.Sprite):
         if s_to_player <= self.radius:
             self.damaging()
 
-    def damaging(self, player):
+    def damaging(self, player, ALL_SPRITES):
         a = random.randrange(0, 25)
         if a == 0:
             pos = player.return_pos()
@@ -97,32 +98,27 @@ class Enemy(pygame.sprite.Sprite):
 
 
 class Archer(Enemy):
-    def damaging(self, a):
-        a = random.randrange(0, 4)
-        dam = random.randrange(self.damage)
-        if a == 0:  # Попал
-            pass
-        else:  # не попал
-            pass
+    def damaging(self, player, ALL_SPRITES):
+        rand = random.randrange(0, 200)
+        if rand == 0:
+            x = player.x
+            y = player.y
+            if x >= self.x and y >= self.y:
+                bullet = Bullet(10, self.x + 168, self.y + 168, ALL_SPRITES, player,
+                                self.damage * self.k_out, self)
+            if x <= self.x and y >= self.y:
+                bullet = Bullet(10, self.x - 40, self.y + 168, ALL_SPRITES, player,
+                                self.damage * self.k_out, self)
+            if x >= self.x and y <= self.y:
+                bullet = Bullet(10, self.x + 168, self.y - 40, ALL_SPRITES, player,
+                                self.damage * self.k_out, self)
+            if x <= self.x and y <= self.y:
+                bullet = Bullet(10, self.x - 40, self.y - 40, ALL_SPRITES, player,
+                                self.damage * self.k_out, self)
 
 
 class Tank(Enemy):
-    def damaging(self):
-        a = random.randrange(10, self.damage)
-        return a * self.k_out
-
-    def koords_of_archer(self, *spisok_of_koords_and_id, player_pos):
-        self.s_to_player = sqrt(
-            (int(player_pos[0]) - int(self.pos[0])) ** 2 + (int(player_pos[1]) - int(self.pos[1])) ** 2)
-        for r in spisok_of_koords_and_id:
-            s_to_archer = sqrt((int(r[0]) - int(self.pos[0])) ** 2 +
-                               (int(r[1]) - int(self.pos[1])) ** 2)
-            if s_to_archer < self.min_s:
-                self.min_s = s_to_archer
-                self.archer_id = r[2]
-
-    def movement(self, player_pos):
-        pass
+    pass
 
 
 class SwordMan(Enemy):

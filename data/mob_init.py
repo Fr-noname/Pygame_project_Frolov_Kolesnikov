@@ -4,34 +4,34 @@ from data.enemies import Archer, SwordMan, Tank
 
 
 def archer_lvl1_init(id, pos, ALL_SPRITES):
-    a = Archer(id, pos, 1.5, 1, 150, 16, ALL_SPRITES, 'Port_archer (1).png')
+    a = Archer(id, pos, 1.5, 1, 600, 16, ALL_SPRITES, 'Port_archer (1).png')
     return a
 
 
 def archer_lvl2_init(id, pos, ALL_SPRITES):
     k = random.choice(['Forest_archer.png', 'Field_Archer.png'])
-    a = Archer(id, pos, 1.25, 1.2, 175, 18, ALL_SPRITES, k)
+    a = Archer(id, pos, 1.25, 1.2, 650, 18, ALL_SPRITES, k)
     return a
 
 
 def archer_lvl3_init(id, pos, ALL_SPRITES):
-    a = Archer(id, pos, 1.2, 1.5, 200, 20, ALL_SPRITES, 'magician.png')
+    a = Archer(id, pos, 1.2, 1.5, 700, 20, ALL_SPRITES, 'magician.png')
     return a
 
 
 def elite_archer_lvl1_init(id, pos, ALL_SPRITES):
-    a = Archer(id, pos, 1.25, 1.2, 200, 20, ALL_SPRITES, 'Port_archer (1).png')
+    a = Archer(id, pos, 1.25, 1.2, 700, 20, ALL_SPRITES, 'Port_archer (1).png')
     return a
 
 
 def elite_archer_lvl2_init(id, pos, ALL_SPRITES):
     k = random.choice(['Forest_archer.png', 'Field_Archer.png'])
-    a = Archer(id, pos, 1.2, 1.5, 200, 25, ALL_SPRITES, k)
+    a = Archer(id, pos, 1.2, 1.5, 750, 25, ALL_SPRITES, k)
     return a
 
 
 def elite_archer_lvl3_init(id, pos, ALL_SPRITES):
-    a = Archer(id, pos, 1.1, 1.75, 250, 30, ALL_SPRITES, 'magician.png')
+    a = Archer(id, pos, 1.1, 1.75, 1300, 30, ALL_SPRITES, 'magician.png')
     return a
 
 
@@ -68,32 +68,32 @@ def elite_swordman_lvl3_init(id, pos, ALL_SPRITES):
 
 
 def tank_lvl1_init(id, pos, ALL_SPRITES):
-    a = Tank(id, pos, 0.6, 1, 20, 5, ALL_SPRITES, 'Port_TANK.png')
+    a = Tank(id, pos, 0.6, 1, 20, 15, ALL_SPRITES, 'Port_TANK.png')
     return a
 
 
 def tank_lvl2_init(id, pos, ALL_SPRITES):
     k = random.choice(['Forest_TANK.png', 'Field_TANK.png'])
-    a = Tank(id, pos, 0.5, 1, 20, 7, ALL_SPRITES, k)
+    a = Tank(id, pos, 0.5, 1, 20, 17, ALL_SPRITES, k)
     return a
 
 
 def tank_lvl3_init(id, pos, ALL_SPRITES):
-    a = Tank(id, pos, 0.4, 1, 20, 9, ALL_SPRITES, 'BLOB.png')
+    a = Tank(id, pos, 0.4, 1, 20, 19, ALL_SPRITES, 'BLOB.png')
     return a
 
 
 def elite_tank_lvl1_init(id, pos, ALL_SPRITES):
-    a = Tank(id, pos, 0.5, 1.1, 25, 7, ALL_SPRITES, 'Port_TANK.png')
+    a = Tank(id, pos, 0.5, 1.1, 25, 17, ALL_SPRITES, 'Port_TANK.png')
     return a
 
 
 def elite_tank_lvl2_init(id, pos, ALL_SPRITES):
     k = random.choice(['Forest_TANK.png', 'Field_TANK.png'])
-    a = Tank(id, pos, 0.4, 1.2, 25, 9, ALL_SPRITES, k)
+    a = Tank(id, pos, 0.4, 1.2, 25, 19, ALL_SPRITES, k)
     return a
 
 
 def elite_tank_lvl3_init(id, pos, ALL_SPRITES):
-    a = Tank(id, pos, 0.3, 1.25, 25, 11, ALL_SPRITES, 'BLOB.png')
+    a = Tank(id, pos, 0.3, 1.25, 25, 21, ALL_SPRITES, 'BLOB.png')
     return a
