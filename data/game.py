@@ -149,9 +149,20 @@ def choose_of_character():
                     a = berserk_init(player_pos, ALL_SPRITES=ALL_SPRITES)
                 if a:
                     start(player=a, ALL_SPRITES=ALL_SPRITES)
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_t:
+                    stroka = input()
+                    a = False
+                    player_pos = pygame.Vector2(960, 520)
+                    if stroka == 'general':
+                        a = general_init(player_pos, ALL_SPRITES=ALL_SPRITES)
+                    if stroka == 'negor':
+                        a = egor_init(player_pos, ALL_SPRITES=ALL_SPRITES)
+                    if a:
+                        start(player=a, ALL_SPRITES=ALL_SPRITES)
+
         pygame.display.update()
         pygame.display.flip()
         clock.tick(fps)
         pygame.display.flip()
     pygame.quit()
-
