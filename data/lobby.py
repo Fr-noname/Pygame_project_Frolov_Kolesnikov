@@ -21,7 +21,7 @@ def lobby():
                 pos = event.pos
                 if 50 <= int(pos[0]) <= 1025:
                     if 400 <= int(pos[1]) <= 475:
-                        game.start(setings=[DifficultyNomer])
+                        game.choose_of_character()
                     elif 525 <= int(pos[1]) <= 600:
                         game.setings()
                     elif 650 <= int(pos[1]) <= 725:

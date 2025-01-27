@@ -75,7 +75,7 @@ class Bullet(pygame.sprite.Sprite):
             self.damage = 0
             self.kill()
         spisok = pygame.sprite.spritecollideany(self, self.sprites)
-        if self.creator == spisok:
+        if self.creator != spisok:
             self.mob.incoming_damage(self.damage)
             self.damage = 0
             self.kill()

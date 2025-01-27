@@ -29,5 +29,5 @@ def scorpius_init(player_pos, ALL_SPRITES):
 
 
 def paladin_init(player_pos, ALL_SPRITES):
-    return Berserk(200, 150, 1, 1, 5, HolyChain(50, 120), Crucifix(40, 30), Krest, player_pos,
+    return Berserk(200, 150, 0.1, 1.2, 5, HolyChain(50, 120), Crucifix(40, 30), Krest, player_pos,
                    "paladin.png", ALL_SPRITES)
