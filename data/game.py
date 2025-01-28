@@ -14,7 +14,6 @@ def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
     kills = 30
     flag = False
     size = (1920, 1080)
-    player_pos = pygame.Vector2(size[0] // 2, size[1] // 2)
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption("Until it Done")
     clock = pygame.time.Clock()
@@ -22,6 +21,20 @@ def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
     screen.fill((0, 0, 0))
 
     running = True
+
+    if room != 1:
+        if type(player) == General:
+            player = general_init(player, ALL_SPRITES)
+        elif type(player) == SoulEater:
+            player = souleater_init(player, ALL_SPRITES)
+        elif type(player) == Scorpius:
+            player = scorpius_init(player, ALL_SPRITES)
+        elif type(player) == Paladin:
+            player = paladin_init(player, ALL_SPRITES)
+        elif type(player) == Berserk:
+            player = berserk_init(player, ALL_SPRITES)
+        elif type(player) == Egor:
+            player = egor_init(player, ALL_SPRITES)
 
     s, mobs = lvl(lvl_nomer, screen, room, ALL_SPRITES, kills, lvl_nomer)
 
