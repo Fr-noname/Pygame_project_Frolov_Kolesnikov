@@ -57,26 +57,29 @@ def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
                 if e.button == 3:
                     player.attack(mobs, ALL_SPRITES=ALL_SPRITES, w=1)
 
-        # for r in list(mobs):
-        #     if r.hp <= 0:
-        #         r.kill()
-        if mobs.hp <= 0:  # тест моб
-            mobs.kill()
+        for r in mobs:
+            if r.hp <= 0:
+                r.kill()
+        # if mobs.hp <= 0:  # тест моб
+        #     mobs.kill()
 
         if player.hp <= 0:
             player.kill()
             running = False
 
         player.movement()
-        if mobs.hp > 0:
-            mobs.movemnt(player.return_pos())  # тест моб
-        # for mob_test in mobs:
-        #     mob_test.movemnt(a.return_pos())
+        # if mobs.hp > 0:
+        #     mobs.movemnt(player.return_pos())  # тест моб
+        for mob_test in mobs:
+            if mob_test.hp > 0:
+                mob_test.movemnt(player.return_pos())
 
         ALL_SPRITES.draw(screen)
         ALL_SPRITES.update()
 
-        mobs.damaging(player, ALL_SPRITES=ALL_SPRITES)
+        for mob_test in mobs:
+            if mob_test.hp > 0:
+                mob_test.damaging(player, ALL_SPRITES=ALL_SPRITES)
 
         pos = player.return_pos()
         if int(pos[0]) <= -50 or int(pos[0]) >= 1920 or int(pos[1]) <= -50 or int(pos[1]) >= 1080:

@@ -20,6 +20,6 @@ def lvl(n, screen, room, ALL_SPRITES, kills, lvl):
         name = random.choice(BATTLE_ROOMS)
         s = generate_lvl(name, screen, n, ALL_SPRITES)
     # mobs = generate_mobs(1, ALL_SPRITES, lvl, KLETKA)
-    mobs = Boss_lvl1_init(1, (21, 21), ALL_SPRITES)
+    mobs = Boss_lvl2_init_1(1, (21, 21), ALL_SPRITES)
     return s, mobs
 

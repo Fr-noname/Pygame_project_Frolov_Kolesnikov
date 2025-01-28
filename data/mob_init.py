@@ -1,5 +1,7 @@
 import random
 
+import pygame
+
 from data.enemies import Archer, SwordMan, Tank
 
 
@@ -101,4 +103,22 @@ def elite_tank_lvl3_init(id, pos, ALL_SPRITES):
 
 def Boss_lvl1_init(id, pos, ALL_SPRITES):
     a = Tank(id, pos, 0.2, 1.9, 100, 40, ALL_SPRITES, 'BOSS_PORT.png')
+    return a
+
+
+def Boss_lvl2_init_1(id, pos, ALL_SPRITES):
+    a = SwordMan(id, pos, 0.2, 1.9, 100, 40, ALL_SPRITES, 'KOLODA.png')
+    print(pos)
+    pos_2 = (1920 - pos[0] - 128, 1080 - pos[1] - 128)
+    b = Archer(id, pos_2, 0.3, 1.8, 1000, 40, ALL_SPRITES, 'PEN.png')
+    return a, b
+
+
+def Boss_lvl2_init_2(id, pos, ALL_SPRITES):
+    a = Tank(id, pos, 0.15, 2, 100, 30, ALL_SPRITES, 'Field_BOSS.png')
+    return a
+
+
+def Boss_lvl3_init(id, pos, ALL_SPRITES):
+    a = Tank(id, pos, 0.1, 2.5, 150, 45, ALL_SPRITES, 'MIMIC.png')
     return a

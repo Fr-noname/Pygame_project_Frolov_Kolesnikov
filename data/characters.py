@@ -48,7 +48,7 @@ class Player(pygame.sprite.Sprite):
 
     def attack(self, *mobs, ALL_SPRITES, w):
         if w % 2 == 0:
-            for r in mobs:
+            for r in mobs[0]:
                 x, y = r.get_pos()
                 s_to_mob = sqrt((self.x - x) ** 2 + (self.y - y) ** 2)
                 if s_to_mob <= self.weapon1.attack():
@@ -56,7 +56,7 @@ class Player(pygame.sprite.Sprite):
 
         else:
             min_s = 9999
-            for r in mobs:
+            for r in mobs[0]:
                 x, y = r.get_pos()
                 if sqrt((r.x - x) ** 2 + (r.y - y) ** 2) <= min_s:
                     mob = r
