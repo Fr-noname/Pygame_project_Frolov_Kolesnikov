@@ -60,6 +60,8 @@ def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
         for r in mobs:
             if r.hp <= 0:
                 r.kill()
+                mobs = list(mobs)
+                mobs.remove(r)
         # if mobs.hp <= 0:  # тест моб
         #     mobs.kill()
 

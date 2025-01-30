@@ -46,32 +46,34 @@ class Player(pygame.sprite.Sprite):
     def get_information(self):
         return [self.hp, self.shield, self.k_in, self.k_out, self.juwelery, self.v]
 
-    def attack(self, *mobs, ALL_SPRITES, w):
-        if w % 2 == 0:
-            for r in mobs[0]:
-                x, y = r.get_pos()
-                s_to_mob = sqrt((self.x - x) ** 2 + (self.y - y) ** 2)
-                if s_to_mob <= self.weapon1.attack():
-                    r.incoming_damage(self.weapon1.damage * self.k_out)
+    def attack(self, mobs, ALL_SPRITES, w):
+        if mobs:
+            print(mobs)
+            if w % 2 == 0:
+                for r in mobs:
+                    x, y = r.get_pos()
+                    s_to_mob = sqrt((self.x - x) ** 2 + (self.y - y) ** 2)
+                    if s_to_mob <= self.weapon1.attack():
+                        r.incoming_damage(self.weapon1.damage * self.k_out)
 
-        else:
-            min_s = 9999
-            for r in mobs[0]:
-                x, y = r.get_pos()
-                if sqrt((r.x - x) ** 2 + (r.y - y) ** 2) <= min_s:
-                    mob = r
-            if x >= self.x and y >= self.y:
-                bullet = Bullet(self.weapon2.s // 2, self.x + 168, self.y + 168, ALL_SPRITES, mob,
-                                self.weapon2.damage * self.k_out, self)
-            if x <= self.x and y >= self.y:
-                bullet = Bullet(self.weapon2.s // 2, self.x - 40, self.y + 168, ALL_SPRITES, mob,
-                                self.weapon2.damage * self.k_out, self)
-            if x >= self.x and y <= self.y:
-                bullet = Bullet(self.weapon2.s // 2, self.x + 168, self.y - 40, ALL_SPRITES, mob,
-                                self.weapon2.damage * self.k_out, self)
-            if x <= self.x and y <= self.y:
-                bullet = Bullet(self.weapon2.s // 2, self.x - 40, self.y - 40, ALL_SPRITES, mob,
-                                self.weapon2.damage * self.k_out, self)
+            else:
+                min_s = 9999
+                for r in mobs:
+                    x, y = r.get_pos()
+                    if sqrt((r.x - x) ** 2 + (r.y - y) ** 2) <= min_s:
+                        mob = r
+                if x >= self.x and y >= self.y:
+                    bullet = Bullet(self.weapon2.s // 2, self.x + 168, self.y + 168, ALL_SPRITES, mob,
+                                    self.weapon2.damage * self.k_out, self)
+                if x <= self.x and y >= self.y:
+                    bullet = Bullet(self.weapon2.s // 2, self.x - 40, self.y + 168, ALL_SPRITES, mob,
+                                    self.weapon2.damage * self.k_out, self)
+                if x >= self.x and y <= self.y:
+                    bullet = Bullet(self.weapon2.s // 2, self.x + 168, self.y - 40, ALL_SPRITES, mob,
+                                    self.weapon2.damage * self.k_out, self)
+                if x <= self.x and y <= self.y:
+                    bullet = Bullet(self.weapon2.s // 2, self.x - 40, self.y - 40, ALL_SPRITES, mob,
+                                    self.weapon2.damage * self.k_out, self)
 
     def return_pos(self):
         return [self.x, self.y]
