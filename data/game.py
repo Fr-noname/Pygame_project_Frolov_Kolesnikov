@@ -10,6 +10,7 @@ from data.mob_init import *
 
 
 def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
+    sound = 'sounds/'
     pygame.init()  # Инициация PyGame
     kills = 30
     flag = False
@@ -19,6 +20,10 @@ def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
     clock = pygame.time.Clock()
     fps = 120
     screen.fill((0, 0, 0))
+
+    sound1 = pygame.mixer.Sound(sound + 'unknown_mystery_of_the_forest.mp3')
+    channel = sound1.play()
+    sound1.set_volume(1)
 
     running = True
 
@@ -183,5 +188,6 @@ def choose_of_character():
         pygame.display.flip()
         clock.tick(fps)
         pygame.display.flip()
+        sound1.stop()
         sound1.stop()
     pygame.quit()

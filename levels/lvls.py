@@ -22,6 +22,7 @@ def lvl(n, screen, room, ALL_SPRITES, kills, lvl):
     # mobs = generate_mobs(1, ALL_SPRITES, lvl, KLETKA)
     mobs = Boss_lvl2_init_1(1, (21, 21), ALL_SPRITES)
     mobs = list(mobs)
-    mobsBoss_lvl3_init(1, (500, 900), ALL_SPRITES)
+    mobs.append(Boss_lvl3_init(1, (500, 900), ALL_SPRITES))
+    mobs.append(tank_lvl1_init(1, (900, 500), ALL_SPRITES))
     return s, mobs
 
