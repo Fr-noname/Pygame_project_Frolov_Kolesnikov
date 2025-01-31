@@ -66,16 +66,18 @@ class Bullet(pygame.sprite.Sprite):
         self.image = pygame.Surface((2 * radius, 2 * radius), pygame.SRCALPHA, 32)
         pygame.draw.circle(self.image, pygame.Color("red"), (radius, radius), radius)
         self.rect = pygame.Rect(x, y, 2 * radius, 2 * radius)
-        self.vx = (mob.x - x) // 400
-        self.vy = (mob.y - y) // 400
+        self.vx = (mob.x - x) // 200
+        self.vy = (mob.y - y) // 200
 
     def update(self):
         self.rect = self.rect.move(self.vx, self.vy)
+
         if pygame.sprite.spritecollideany(self, KLETKA):
             self.damage = 0
             self.kill()
         spisok = pygame.sprite.spritecollideany(self, self.sprites)
-        if self.creator != spisok:
+        print(spisok, self.creator)
+        if self.creator != spisok and spisok != self:
             if spisok:
                 self.mob.incoming_damage(self.damage)
                 self.damage = 0

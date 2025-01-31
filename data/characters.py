@@ -48,7 +48,6 @@ class Player(pygame.sprite.Sprite):
 
     def attack(self, mobs, ALL_SPRITES, w):
         if mobs:
-            print(mobs)
             if w % 2 == 0:
                 for r in mobs:
                     x, y = r.get_pos()

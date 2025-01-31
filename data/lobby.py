@@ -4,6 +4,7 @@ from data.functions import DifficultyNomer
 
 
 def lobby():
+    sound = 'sounds/'
     pygame.init()
     image = load_image('lobby.png')
     size = w, h = (1920, 1080)
@@ -12,6 +13,9 @@ def lobby():
     fps = 144
     running = True
     screen.blit(image, (1, 1))
+    sound1 = pygame.mixer.Sound(sound + 'Undertale.mp3')
+    channel = sound1.play()
+    sound1.set_volume(1)
 
     while running:
         for event in pygame.event.get():
@@ -27,7 +31,7 @@ def lobby():
                     elif 650 <= int(pos[1]) <= 725:
                         running = False
         pygame.display.flip()
-        print(clock.get_fps())
+        # print(clock.get_fps())
         clock.tick(fps)
 
     pygame.quit()

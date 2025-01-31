@@ -21,5 +21,7 @@ def lvl(n, screen, room, ALL_SPRITES, kills, lvl):
         s = generate_lvl(name, screen, n, ALL_SPRITES)
     # mobs = generate_mobs(1, ALL_SPRITES, lvl, KLETKA)
     mobs = Boss_lvl2_init_1(1, (21, 21), ALL_SPRITES)
+    mobs = list(mobs)
+    mobsBoss_lvl3_init(1, (500, 900), ALL_SPRITES)
     return s, mobs
 

@@ -62,16 +62,12 @@ def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
                 r.kill()
                 mobs = list(mobs)
                 mobs.remove(r)
-        # if mobs.hp <= 0:  # тест моб
-        #     mobs.kill()
 
         if player.hp <= 0:
             player.kill()
             running = False
 
         player.movement()
-        # if mobs.hp > 0:
-        #     mobs.movemnt(player.return_pos())  # тест моб
         for mob_test in mobs:
             if mob_test.hp > 0:
                 mob_test.movemnt(player.return_pos())
@@ -138,6 +134,7 @@ def setings():
 
 
 def choose_of_character():
+    sound = 'sounds/'
     pygame.init()  # Инициация PyGame
     size = (1920, 1080)
     screen = pygame.display.set_mode(size)
@@ -145,6 +142,9 @@ def choose_of_character():
     image = load_image('characters.png')
     clock = pygame.time.Clock()
     fps = 120
+    sound1 = pygame.mixer.Sound(sound + 'Undertale.mp3')
+    channel = sound1.play()
+    sound1.set_volume(1)
     screen.fill((0, 0, 0))
     running = True
     screen.blit(image, (1, 1))
@@ -183,4 +183,5 @@ def choose_of_character():
         pygame.display.flip()
         clock.tick(fps)
         pygame.display.flip()
+        sound1.stop()
     pygame.quit()
