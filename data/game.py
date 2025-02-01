@@ -46,12 +46,17 @@ def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
     player.x = 960
     player.y = 540
 
+    pygame.draw.rect(screen, 'red', (1, 1, 10, player.hp), 0)
+    pygame.draw.rect(screen, 'gray', (1, 11, 10, player.shield), 0)
+
     while running:
         screen.fill("0x000000")
         for r in s:
             b = pygame.Surface((20, 20))
             b.fill((0, 0, 0))
             screen.blit(b, r)
+        pygame.draw.rect(screen, 'red', (1, 1, 10, player.hp), 0)
+        pygame.draw.rect(screen, 'gray', (1, 11, 10, player.shield), 0)
 
         for e in pygame.event.get():
             if e.type == pygame.QUIT:

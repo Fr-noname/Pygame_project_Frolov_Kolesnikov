@@ -36,22 +36,24 @@ def generate_lvl(name, screen, n, ALL_SPRITES):
     return s
 
 
-def generate_mobs(n, ALL_SPRITES, lvl, KLETKA):
+def generate_mobs(ALL_SPRITES, lvl, s):
     spisok = []
-    s = archer_lvl1_init(1, pygame.Vector2(21, 21), ALL_SPRITES)
     for i in range(7):
+        pos = random.choice(s)
+        while pos[0] >= 1920 - 128 or pos >= 1080 - 128:
+            pos = random.choice(s)
         if lvl == 1:
             a = random.randrange(0, 2)
             if a % 3 == 0:
-                s = archer_lvl1_init(1, pygame.Vector2(21, 21), ALL_SPRITES)
+                s = archer_lvl1_init(1, pygame.Vector2(pos), ALL_SPRITES)
         if lvl == 2:
             a = random.randrange(0, 2)
             if a % 3 == 0:
-                s = archer_lvl2_init(1, pygame.Vector2(21, 21), ALL_SPRITES)
+                s = archer_lvl2_init(1, pygame.Vector2(pos), ALL_SPRITES)
         if lvl == 3:
             a = random.randrange(0, 2)
             if a % 3 == 0:
-                s = archer_lvl3_init(1, pygame.Vector2(21, 21), ALL_SPRITES)
+                s = archer_lvl3_init(1, pygame.Vector2(pos), ALL_SPRITES)
         spisok.append(s)
     return spisok
 
