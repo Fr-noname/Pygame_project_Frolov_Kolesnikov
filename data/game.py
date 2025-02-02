@@ -9,10 +9,10 @@ from data.characters_init import *
 from data.mob_init import *
 
 
-def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
+def start(difficulty_nomer=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
     sound = 'sounds/'
     pygame.init()  # Инициация PyGame
-    kills = 30
+    kills = 0
     flag = False
     size = (1920, 1080)
     screen = pygame.display.set_mode(size)
@@ -22,7 +22,7 @@ def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
     screen.fill((0, 0, 0))
 
     sound1 = pygame.mixer.Sound(sound + 'unknown_mystery_of_the_forest.mp3')
-    channel = sound1.play()
+    channel = sound1.play(-1)
     sound1.set_volume(1)
 
     running = True
@@ -41,13 +41,14 @@ def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
         elif type(player) == Egor:
             player = egor_init(player, ALL_SPRITES)
 
-    s, mobs = lvl(lvl_nomer, screen, room, ALL_SPRITES, kills, lvl_nomer)
+    s, mobs = lvl(lvl_nomer, screen, room, ALL_SPRITES, kills, lvl_nomer, difficulty_nomer)
 
     player.x = 960
     player.y = 540
 
     pygame.draw.rect(screen, 'red', (1, 1, 10, player.hp), 0)
     pygame.draw.rect(screen, 'gray', (1, 11, 10, player.shield), 0)
+    b_e = False
 
     while running:
         screen.fill("0x000000")
@@ -72,10 +73,12 @@ def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
                 r.kill()
                 mobs = list(mobs)
                 mobs.remove(r)
+                kills += 1
 
         if player.hp <= 0:
             player.kill()
             running = False
+            b_e = True
 
         player.movement()
         for mob_test in mobs:
@@ -101,14 +104,26 @@ def start(setings=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None):
         clock.tick(fps)
         pygame.display.flip()
     pygame.quit()
+    for r in KLETKA:
+        r.kill()
     if flag:
+        true_flag = True
         for r in ALL_SPRITES:
             r.kill()
 
-        if room % 5 == 1 and kills // 30 >= 1:
+        if room % 5 == 0 and kills // 21 >= 1:
             lvl_nomer += 1
+            kills = 0
+            true_flag = True
 
-        start(room=room, lvl_nomer=lvl_nomer, player=player, ALL_SPRITES=ALL_SPRITES)
+        if room % 5 == 1 and lvl_nomer == 4:
+            good_ending()
+            true_flag = False
+
+        if true_flag:
+            start(room=room, lvl_nomer=lvl_nomer, player=player, ALL_SPRITES=ALL_SPRITES)
+    if b_e:
+        bad_ending()
     sys.exit()
 
 
@@ -129,21 +144,21 @@ def setings():
                 pos = event.pos
                 if 50 <= int(pos[0]) <= 1025:
                     if 400 <= int(pos[1]) <= 475:
-                        DifficultyNomer = 1
+                        difficulty_nomer = 1
                         running = False
                     elif 525 <= int(pos[1]) <= 600:
-                        DifficultyNomer = 2
+                        difficulty_nomer = 2
                         running = False
                     elif 650 <= int(pos[1]) <= 725:
-                        DifficultyNomer = 3
+                        difficulty_nomer = 3
                         running = False
         screen.blit(image, (1, 1))
         pygame.display.flip()
     pygame.quit()
-    lobby.lobby()
+    lobby.lobby(difficulty_nomer=difficulty_nomer)
 
 
-def choose_of_character():
+def choose_of_character(difficulty_nomer=1):
     sound = 'sounds/'
     pygame.init()  # Инициация PyGame
     size = (1920, 1080)
@@ -153,7 +168,7 @@ def choose_of_character():
     clock = pygame.time.Clock()
     fps = 120
     sound1 = pygame.mixer.Sound(sound + 'Undertale.mp3')
-    channel = sound1.play()
+    channel = sound1.play(-1)
     sound1.set_volume(1)
     screen.fill((0, 0, 0))
     running = True
@@ -187,7 +202,7 @@ def choose_of_character():
                     if stroka == 'negor':
                         a = egor_init(player_pos, ALL_SPRITES=ALL_SPRITES)
                     if a:
-                        start(player=a, ALL_SPRITES=ALL_SPRITES)
+                        start(difficulty_nomer=difficulty_nomer, player=a, ALL_SPRITES=ALL_SPRITES)
 
         pygame.display.update()
         pygame.display.flip()

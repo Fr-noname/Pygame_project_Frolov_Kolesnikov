@@ -1,9 +1,8 @@
 from data import game
 from data.anime import *
-from data.functions import DifficultyNomer
 
 
-def lobby():
+def lobby(difficulty_nomer=1):
     sound = 'sounds/'
     pygame.init()
     image = load_image('lobby.png')
@@ -14,7 +13,7 @@ def lobby():
     running = True
     screen.blit(image, (1, 1))
     sound1 = pygame.mixer.Sound(sound + 'Undertale.mp3')
-    channel = sound1.play()
+    channel = sound1.play(-1)
     sound1.set_volume(1)
 
     while running:
@@ -25,7 +24,7 @@ def lobby():
                 pos = event.pos
                 if 50 <= int(pos[0]) <= 1025:
                     if 400 <= int(pos[1]) <= 475:
-                        game.choose_of_character()
+                        game.choose_of_character(difficulty_nomer=difficulty_nomer)
                     elif 525 <= int(pos[1]) <= 600:
                         game.setings()
                     elif 650 <= int(pos[1]) <= 725:

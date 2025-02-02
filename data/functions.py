@@ -38,17 +38,17 @@ def generate_lvl(name, screen, n, ALL_SPRITES):
     return s
 
 
-def generate_mobs(ALL_SPRITES, lvl, s, difficulty_nomer, room):
+def generate_mobs(ALL_SPRITES, lvl_nomer, s, difficulty_nomer, room):
     spisok = []
-    print(s)
     for i in range(7):
         pos = random.choice(s)
         while pos[0] >= 1920 - 128 or pos[1] >= 1080 - 128:
             pos = random.choice(s)
         pos = tuple(pos)
         mob = None
+        boss = False
         if difficulty_nomer == 1 and room % 5 > 1:
-            if lvl == 1:
+            if lvl_nomer == 1:
                 a = random.randrange(0, 3)
                 if a == 0:
                     mob = archer_lvl1_init(1, pygame.Vector2(pos), ALL_SPRITES)
@@ -56,7 +56,7 @@ def generate_mobs(ALL_SPRITES, lvl, s, difficulty_nomer, room):
                     mob = swordman_lvl1_init(1, pygame.Vector2(pos), ALL_SPRITES)
                 if a == 2:
                     mob = tank_lvl1_init(1, pygame.Vector2(pos), ALL_SPRITES)
-            if lvl == 2:
+            if lvl_nomer == 2:
                 a = random.randrange(0, 3)
                 if a == 0:
                     mob = archer_lvl2_init(1, pygame.Vector2(pos), ALL_SPRITES)
@@ -64,7 +64,7 @@ def generate_mobs(ALL_SPRITES, lvl, s, difficulty_nomer, room):
                     mob = swordman_lvl2_init(1, pygame.Vector2(pos), ALL_SPRITES)
                 if a == 2:
                     mob = tank_lvl2_init(1, pygame.Vector2(pos), ALL_SPRITES)
-            if lvl == 3:
+            if lvl_nomer == 3:
                 a = random.randrange(0, 3)
                 if a == 0:
                     mob = archer_lvl3_init(1, pygame.Vector2(pos), ALL_SPRITES)
@@ -73,7 +73,7 @@ def generate_mobs(ALL_SPRITES, lvl, s, difficulty_nomer, room):
                 if a == 2:
                     mob = tank_lvl3_init(1, pygame.Vector2(pos), ALL_SPRITES)
         elif difficulty_nomer >= 2 and room % 5 > 1:
-            if lvl == 1:
+            if lvl_nomer == 1:
                 a = random.randrange(0, 3)
                 if a == 0:
                     mob = elite_archer_lvl1_init(1, pygame.Vector2(pos), ALL_SPRITES)
@@ -81,7 +81,7 @@ def generate_mobs(ALL_SPRITES, lvl, s, difficulty_nomer, room):
                     mob = elite_swordman_lvl1_init(1, pygame.Vector2(pos), ALL_SPRITES)
                 if a == 2:
                     mob = elite_tank_lvl1_init(1, pygame.Vector2(pos), ALL_SPRITES)
-            if lvl == 2:
+            if lvl_nomer == 2:
                 a = random.randrange(0, 3)
                 if a == 0:
                     mob = elite_archer_lvl2_init(1, pygame.Vector2(pos), ALL_SPRITES)
@@ -89,7 +89,7 @@ def generate_mobs(ALL_SPRITES, lvl, s, difficulty_nomer, room):
                     mob = elite_swordman_lvl2_init(1, pygame.Vector2(pos), ALL_SPRITES)
                 if a == 2:
                     mob = elite_tank_lvl2_init(1, pygame.Vector2(pos), ALL_SPRITES)
-            if lvl == 3:
+            if lvl_nomer == 3:
                 a = random.randrange(0, 3)
                 if a == 0:
                     mob = elite_archer_lvl3_init(1, pygame.Vector2(pos), ALL_SPRITES)
@@ -97,8 +97,30 @@ def generate_mobs(ALL_SPRITES, lvl, s, difficulty_nomer, room):
                     mob = elite_swordman_lvl3_init(1, pygame.Vector2(pos), ALL_SPRITES)
                 if a == 2:
                     mob = elite_tank_lvl3_init(1, pygame.Vector2(pos), ALL_SPRITES)
-        if mob:
+        elif room % 5 == 0:
+            if lvl_nomer == 1:
+                mob = boss_lvl1_init(1, pos, ALL_SPRITES)
+                boss = True
+            if lvl_nomer == 2:
+                a = random.randrange(0, 2)
+                if a == 0:
+                    mob = boss_lvl2_init_2(1, pos, ALL_SPRITES)
+                if a == 1:
+                    mob = boss_lvl2_init_1(1, pos, ALL_SPRITES)
+                boss = True
+            if lvl_nomer == 3:
+                a = random.randrange(0, 3)
+                mob = boss_lvl3_init(1, pos, ALL_SPRITES)
+                boss = True
+        if mob and not boss:
             spisok.append(mob)
+        if boss:
+            if type(mob) == tuple:
+                for r in mob:
+                    spisok.append(r)
+            else:
+                spisok.append(mob)
+            break
     return spisok
 
 
@@ -160,9 +182,5 @@ def good_ending():
     sound1.stop()
     pygame.quit()
     lobby.lobby()
-
-
-global DifficultyNomer
-DifficultyNomer = 1
 
 Pixel = (20, 20)

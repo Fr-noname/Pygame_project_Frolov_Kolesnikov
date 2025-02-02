@@ -9,7 +9,7 @@ BATTLE_ROOMS = [battle_room1_l_v, battle_room2_r_l, battle_room3_l_n, battle_roo
 BOSS_ROOMS = [battle_room2_r_l, battle_room3_l_n]
 
 
-def lvl(n, screen, room, ALL_SPRITES, kills, lvl):
+def lvl(n, screen, room, ALL_SPRITES, kills, lvl_nomer, difficulty_nomer):
     if room % 5 == 1:
         name = random.choice(BEG_ROOMS)
         s = generate_lvl(name, screen, n, ALL_SPRITES)
@@ -19,10 +19,6 @@ def lvl(n, screen, room, ALL_SPRITES, kills, lvl):
     else:
         name = random.choice(BATTLE_ROOMS)
         s = generate_lvl(name, screen, n, ALL_SPRITES)
-    # mobs = generate_mobs(1, ALL_SPRITES, lvl, KLETKA)
-    mobs = Boss_lvl2_init_1(1, (21, 21), ALL_SPRITES)
-    mobs = list(mobs)
-    mobs.append(Boss_lvl3_init(1, (500, 900), ALL_SPRITES))
-    mobs.append(tank_lvl1_init(1, (900, 500), ALL_SPRITES))
+    mobs = generate_mobs(ALL_SPRITES, lvl_nomer, s, difficulty_nomer, room)
     return s, mobs
 
