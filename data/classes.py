@@ -16,8 +16,10 @@ class Border(pygame.sprite.Sprite):  # класс пикселя (он если 
 
 class Bullet(pygame.sprite.Sprite):  # класс пули
     def __init__(self, radius, x, y, ALL_SPRITES, mob, damage, creator):
-        super().__init__(ALL_SPRITES)
-        min_s = 9999  # запись радиуса, положения, цели, урона, создателя
+        super().__init__(ALL_SPRITES)  # запись радиуса, положения, цели, урона, создателя
+        pos = pygame.Vector2((x, y))
+        self.x = pos.x
+        self.y = pos.y
         self.mob = mob
         self.sprites = ALL_SPRITES
         self.damage = damage
@@ -26,11 +28,14 @@ class Bullet(pygame.sprite.Sprite):  # класс пули
         self.image = pygame.Surface((2 * radius, 2 * radius), pygame.SRCALPHA, 32)  # создание спрайта пули - кружка
         pygame.draw.circle(self.image, pygame.Color("red"), (radius, radius), radius)
         self.rect = pygame.Rect(x, y, 2 * radius, 2 * radius)
-        self.vx = (mob.x - x) // 200 + 5  # скорость пули
-        self.vy = (mob.y - y) // 200 + 5
+        self.vx = (mob.x - x) // 100  # скорость пули
+        self.vy = (mob.y - y) // 100
+        print(self.vx, self.vy)
 
     def update(self):
-        self.rect = self.rect.move(self.vx, self.vy)
+        self.x += self.vx
+        self.y += self.vy
+        self.rect = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
 
         if pygame.sprite.spritecollideany(self, KLETKA):  # уничтожение пули о стену
             self.damage = 0

@@ -110,7 +110,7 @@ def start(difficulty_nomer=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None
         for r in ALL_SPRITES:  # обнуление мобов и игрока
             r.kill()
 
-        if room % 5 == 0 and kills // 21 >= 1:  # Изменяем уровень
+        if room % 5 == 1 and kills // 21 >= 1:  # Изменяем уровень
             lvl_nomer += 1
             kills = 0
             true_flag = True

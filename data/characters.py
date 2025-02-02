@@ -58,18 +58,8 @@ class Player(pygame.sprite.Sprite):  # основной класс игрока
                     x, y = r.get_pos()
                     if sqrt((r.x - x) ** 2 + (r.y - y) ** 2) <= min_s:  # расчет расстояния до моба
                         mob = r  # ближайший моб
-                if x >= self.x and y >= self.y:  # генерация пули  в зависимости от положения врага
-                    bullet = Bullet(self.weapon2.s // 2, self.x + 168, self.y + 168, ALL_SPRITES, mob,
-                                    self.weapon2.damage * self.k_out, self)
-                if x <= self.x and y >= self.y:
-                    bullet = Bullet(self.weapon2.s // 2, self.x - 40, self.y + 168, ALL_SPRITES, mob,
-                                    self.weapon2.damage * self.k_out, self)
-                if x >= self.x and y <= self.y:
-                    bullet = Bullet(self.weapon2.s // 2, self.x + 168, self.y - 40, ALL_SPRITES, mob,
-                                    self.weapon2.damage * self.k_out, self)
-                if x <= self.x and y <= self.y:
-                    bullet = Bullet(self.weapon2.s // 2, self.x - 40, self.y - 40, ALL_SPRITES, mob,
-                                    self.weapon2.damage * self.k_out, self)
+                bullet = Bullet(self.weapon2.s // 2, self.x, self.y, ALL_SPRITES, mob,
+                                self.weapon2.damage * self.k_out, self)  # генерация пули
 
     def return_pos(self):  # получение координат игрока
         return [self.x, self.y]
