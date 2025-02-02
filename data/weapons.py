@@ -2,25 +2,25 @@ from math import sqrt
 from time import sleep
 
 
-class Weapon:
+class Weapon:  # ближнее оружие
     def __init__(self, damage, r):  # r - дальность атаки
-        self.damage = damage
+        self.damage = damage  # записываем дальность и урон
         self.r = r
 
-    def attack(self):
+    def attack(self):  # возвращ. дальность
         return self.r
 
-    def damage(self):
+    def damage(self):  # возвращ. урон
         return self.damage
 
 
-class Bow:
+class Bow:  # класс лука
     def __init__(self, damage, s):
-        self.damage = damage
+        self.damage = damage    # записываем толщину пули и урон
         self.s = s
         self.min_s = 9999999999999999999999999999
 
-    def atack(self, time):
+    def atack(self, time):  # не работает, не учитываем
         arrow_damage = self.damage * time
         self.deal_damage(arrow_damage)
 

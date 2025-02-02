@@ -1,5 +1,5 @@
 import random
-
+# не работает поэтом эти строки кода не учитываю
 
 class SecretKubik:  # Для перса Егора
     def multiple_damage(self):  # пасивная способность

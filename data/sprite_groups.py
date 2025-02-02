@@ -1,3 +1,3 @@
 import pygame
 
-KLETKA = pygame.sprite.Group()
+KLETKA = pygame.sprite.Group()  # КЛЕТКА
