@@ -132,8 +132,34 @@ def bad_ending():
     lobby.lobby()
 
 
-def game_win():
-    pass
+def good_ending():
+    sound = 'sounds/'
+    pygame.init()  # Инициация PyGame
+    size = (1920, 1080)
+    screen = pygame.display.set_mode(size)
+    pygame.display.set_caption("Until it Done")
+    image = load_image('win.png')
+    clock = pygame.time.Clock()
+    fps = 120
+    sound1 = pygame.mixer.Sound(sound + 'win.mp3')
+    channel = sound1.play()
+    sound1.set_volume(1)
+    screen.fill((0, 0, 0))
+    running = True
+    screen.blit(image, (1, 1))
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                running = False
+        pygame.display.update()
+        pygame.display.flip()
+        clock.tick(fps)
+        pygame.display.flip()
+    sound1.stop()
+    pygame.quit()
+    lobby.lobby()
 
 
 global DifficultyNomer

@@ -5,7 +5,7 @@ from data.weapons import *
 
 def berserk_init(player_pos, ALL_SPRITES):
     return Berserk(150, 100, 1.4, 3, 12, Axe(25, 100), ThrowingAxe(20, 20), RingOfPower, player_pos,
-                   "BLOB.png", ALL_SPRITES)
+                   "Berserk.png", ALL_SPRITES)
 
 
 def souleater_init(player_pos, ALL_SPRITES):
