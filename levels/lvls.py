@@ -20,6 +20,9 @@ def lvl(n, screen, room, ALL_SPRITES, kills, lvl_nomer, difficulty_nomer):  # г
     else:  # комната босса
         name = random.choice(BATTLE_ROOMS)
         s = generate_lvl(name, screen, n, ALL_SPRITES)
-    mobs = generate_mobs(ALL_SPRITES, lvl_nomer, s, difficulty_nomer, room)  # генерация мобов
+    try:
+        mobs = generate_mobs(ALL_SPRITES, lvl_nomer, s, difficulty_nomer, room)  # генерация мобов
+    except Exception:
+        print("Что-то умерло при генерации мобов")
     return s, mobs
 

@@ -36,13 +36,15 @@ class Bullet(pygame.sprite.Sprite):  # класс пули
         self.x += self.vx
         self.y += self.vy
         self.rect = pygame.Rect(self.x, self.y, self.image.get_width(), self.image.get_height())
-
-        if pygame.sprite.spritecollideany(self, KLETKA):  # уничтожение пули о стену
-            self.damage = 0
-            self.kill()
-        elif (self.creator != pygame.sprite.spritecollideany(self, self.sprites)  # попадание в цель
-              and pygame.sprite.spritecollideany(self, self.sprites) != self):
-            if pygame.sprite.spritecollideany(self, self.sprites):
-                self.mob.incoming_damage(self.damage)
+        try:
+            if pygame.sprite.spritecollideany(self, KLETKA):  # уничтожение пули о стену
                 self.damage = 0
                 self.kill()
+            elif (self.creator != pygame.sprite.spritecollideany(self, self.sprites)  # попадание в цель
+                  and pygame.sprite.spritecollideany(self, self.sprites) != self):
+                if pygame.sprite.spritecollideany(self, self.sprites):
+                    self.mob.incoming_damage(self.damage)
+                    self.damage = 0
+                    self.kill()
+        except Exception:
+            print('Тренируйся, не работает.')

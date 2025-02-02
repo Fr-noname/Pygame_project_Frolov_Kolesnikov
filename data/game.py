@@ -62,10 +62,13 @@ def start(difficulty_nomer=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None
             if e.type == pygame.QUIT:
                 running = False
             if e.type == pygame.MOUSEBUTTONDOWN:
-                if e.button == 1:  # ближняя атака
-                    player.attack(mobs, ALL_SPRITES=ALL_SPRITES, w=0)
-                if e.button == 3:  # дальняя атака
-                    player.attack(mobs, ALL_SPRITES=ALL_SPRITES, w=1)
+                try:
+                    if e.button == 1:  # ближняя атака
+                        player.attack(mobs, ALL_SPRITES=ALL_SPRITES, w=0)
+                    if e.button == 3:  # дальняя атака
+                        player.attack(mobs, ALL_SPRITES=ALL_SPRITES, w=1)
+                except Exception:
+                    print('Атака умерла')
 
         for r in mobs:  # смерть моба
             if r.hp <= 0:
