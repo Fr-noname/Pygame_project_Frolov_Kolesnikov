@@ -1,0 +1,14 @@
+pygame~=2.6.1
+pip~=25.0
+wheel~=0.41.2
+setuptools~=75.8.0
+pyinstaller~=6.11.1
+altgraph~=0.17.4
+packaging~=24.2
+pefile~=2023.2.7
+tomli~=2.0.1
+autocommand~=2.2.2
+inflect~=7.3.1
+typeguard~=4.3.0
+platformdirs~=4.2.2
+zipp~=3.19.2
