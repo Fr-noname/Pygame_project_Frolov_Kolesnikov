@@ -51,7 +51,7 @@ def start(difficulty_nomer=1, room=1, lvl_nomer=1, player=None, ALL_SPRITES=None
 
     while running:
         screen.fill("0x000000")
-        for r in s:  # Отрисовка уровня
+        for r in s :  # Отрисовка уровня
             b = pygame.Surface((20, 20))
             b.fill((0, 0, 0))
             screen.blit(b, r)
